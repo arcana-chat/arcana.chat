@@ -28,8 +28,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>T4 App</title>
-        <meta name="description" content="Tamagui, Solito, Expo & Next.js" />
+        <title>Arcana | AI Powered Tarot</title>
+        <meta name="description" content="Arcana | AI Powered Tarot" />
         <link rel="icon" href="/favicon.ico" />
         <style>{`
           body, #root, #__next {
@@ -51,6 +51,15 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
         setTheme(next as any)
       }}
     >
+      <script
+        key="tamagui-animations-mount"
+        type="text/javascript"
+        dangerouslySetInnerHTML={{
+          // avoid flash of animated things on enter
+          __html: `document.documentElement.classList.add('t_unmounted')`,
+        }}
+      />
+
       <Provider defaultTheme={theme}>
         <SolitoImageProvider
           loader={({ quality, width, src }) => `${imageURL}${src}?w=${width}&q=${quality}`}

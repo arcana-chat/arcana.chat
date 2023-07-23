@@ -18,7 +18,7 @@ const Item = (item: Item): React.ReactElement => {
   return (
     <YStack flexDirection="row" paddingLeft="$2">
       <SolitoImage
-        src="/t4-logo.png"
+        src="/arcana-logo.png"
         width={56}
         height={56}
         alt="T4 Logo"
