@@ -1,0 +1,56 @@
+name: 'Backend Deployment'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/api/**'
+
+jobs:
+  deploy:
+    name: Deploy to Cloudflare Workers
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ vars.TURBO_TEAM }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: 📥 Monorepo install
+        uses: ./.github/actions/pnpm-install
+
+      - name: Migrate database
+        run: pnpm --filter @t4/api migrate
+        env:
+          NO_D1_WARNING: true
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          workingDirectory: packages/api
+          command: deploy src/index.ts
+          secrets: |
+            APP_URL
+            JWT_VERIFICATION_KEY
+            CI
+        env:
+          APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+          JWT_VERIFICATION_KEY: ${{ secrets.JWT_VERIFICATION_KEY }}
+          CI: true
+          NO_D1_WARNING: true
+
+      - name: Set permissions (workaround)
+        run: sudo chmod -R 777 .wrangler
