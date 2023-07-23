@@ -13,10 +13,10 @@ import type { AppProps } from 'next/app'
 import { SolitoImageProvider } from 'solito/image'
 
 if (process.env.NODE_ENV === 'production') {
-  require('../public/tamagui.css')
+  require('./tamagui.css')
 }
 
-const imageURL = process.env.NEXT_PUBLIC_APP_URL as `http:${string}` | `https:${string}`
+const imageURL = process.env.NEXT_PUBLIC_APP_URL as `https:${string}`
 
 function MyApp({ Component, pageProps }: AppProps) {
   const contents = useMemo(() => {
@@ -53,9 +53,7 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
     >
       <Provider defaultTheme={theme}>
         <SolitoImageProvider
-          loader={({ quality, width, src }) => {
-            return `${imageURL}${src}?w=${width}&q=${quality}`
-          }}
+          loader={({ quality, width, src }) => `${imageURL}${src}?w=${width}&q=${quality}`}
         >
           <SafeAreaProvider initialMetrics={initialWindowMetrics}>{children}</SafeAreaProvider>
         </SolitoImageProvider>

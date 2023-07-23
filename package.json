@@ -9,7 +9,7 @@
     "native": "turbo run dev --filter expo-app",
     "web": "turbo run dev --filter next-app",
     "notes": "turbo run dev --filter t4-app-docs",
-    "build": "turbo run build --filter=@arcana/ui",
+    "build": "turbo run build --filter @arcana/ui",
     "generate": "pnpm --filter=@arcana/api generate",
     "migrate:local": "pnpm --filter=@arcana/api migrate:local",
     "upgrade:tamagui": "pnpm up '*tamagui*'@latest '@tamagui/*'@latest react-native-web-lite@latest",
