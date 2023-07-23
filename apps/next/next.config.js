@@ -4,7 +4,7 @@ const { join } = require('path')
 
 const boolVals = {
   true: true,
-  false: false
+  false: false,
 }
 
 const disableExtraction =
@@ -16,7 +16,7 @@ const optimizeCss = false // boolVals[process.env.OPTIMIZE_CSS] ?? process.env.N
 const plugins = [
   withTamagui({
     config: './tamagui.config.ts',
-    components: ['tamagui', '@t4/ui'],
+    components: ['tamagui', '@arcana/ui'],
     importsWhitelist: ['constants.js', 'colors.js'],
     outputCSS: process.env.NODE_ENV === 'production' ? './public/tamagui.css' : null,
     logTimings: true,
@@ -26,8 +26,8 @@ const plugins = [
       if (path.includes(join('packages', 'app'))) {
         return true
       }
-    }
-  })
+    },
+  }),
 ]
 
 module.exports = function () {
@@ -41,13 +41,13 @@ module.exports = function () {
     // Using Solito image loader without Cloudflare's Paid Image Resizing
     images: {},
     typescript: {
-      ignoreBuildErrors: true
+      ignoreBuildErrors: true,
     },
     modularizeImports: {
       '@tamagui/lucide-icons': {
         transform: '@tamagui/lucide-icons/dist/esm/icons/{{kebabCase member}}',
-        skipDefaultConversion: true
-      }
+        skipDefaultConversion: true,
+      },
     },
     transpilePackages: [
       'solito',
@@ -57,7 +57,7 @@ module.exports = function () {
       'expo-modules-core',
       'react-native-safe-area-context',
       'react-native-reanimated',
-      'react-native-gesture-handler'
+      'react-native-gesture-handler',
     ],
     experimental: {
       /*
@@ -72,14 +72,14 @@ module.exports = function () {
       optimizeCss,
       forceSwcTransforms: true,
       scrollRestoration: true,
-      legacyBrowsers: false
-    }
+      legacyBrowsers: false,
+    },
   }
 
   for (const plugin of plugins) {
     config = {
       ...config,
-      ...plugin(config)
+      ...plugin(config),
     }
   }
 

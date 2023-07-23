@@ -1,4 +1,4 @@
-import { config } from '@t4/ui'
+import { config } from '@arcana/ui'
 
 export type Conf = typeof config
 

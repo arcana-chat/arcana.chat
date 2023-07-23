@@ -11,7 +11,7 @@
     "clean": "git clean -xdf .next node_modules .tamagui"
   },
   "dependencies": {
-    "@t4/ui": "*",
+    "@arcana/ui": "*",
     "@tamagui/next-theme": "latest",
     "app": "*",
     "next": "13.4.9",

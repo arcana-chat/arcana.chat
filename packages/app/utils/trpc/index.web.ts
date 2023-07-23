@@ -1,7 +1,7 @@
 import { createTRPCNext } from '@trpc/next'
 import { httpBatchLink, loggerLink } from '@trpc/client'
 import { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
-import type { AppRouter } from '@t4/api/src/router'
+import type { AppRouter } from '@arcana/api/src/router'
 import { supabase } from '../supabase'
 
 const getBaseUrl = () => {

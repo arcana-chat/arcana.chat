@@ -1,4 +1,4 @@
-import { Button, H2, Paragraph, YStack } from '@t4/ui'
+import { Button, H2, Paragraph, YStack } from '@arcana/ui'
 import { ChevronLeft } from '@tamagui/lucide-icons'
 import { createParam } from 'solito'
 import { useLink } from 'solito/link'

@@ -10,14 +10,14 @@ import {
   XStack,
   YStack,
   useToastController,
-} from '@t4/ui'
+} from '@arcana/ui'
 import { ChevronDown } from '@tamagui/lucide-icons'
 import React, { useEffect, useState } from 'react'
 import { Linking } from 'react-native'
 import { useLink } from 'solito/link'
 import { isUserSignedIn, signOut } from 'app/utils/supabase'
 import Constants from 'expo-constants'
-import { useSheetOpen } from '@t4/ui/src/atoms/sheet'
+import { useSheetOpen } from '@arcana/ui/src/atoms/sheet'
 import { SolitoImage } from 'solito/image'
 
 export function HomeScreen() {

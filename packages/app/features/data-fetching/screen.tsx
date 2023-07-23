@@ -1,4 +1,4 @@
-import { H1, H2, Paragraph, YStack } from '@t4/ui'
+import { H1, H2, Paragraph, YStack } from '@arcana/ui'
 import React from 'react'
 import { trpc } from 'app/utils/trpc'
 

@@ -1,5 +1,5 @@
 import { createTRPCReact } from '@trpc/react-query'
-import type { AppRouter } from '@t4/api/src/router'
+import type { AppRouter } from '@arcana/api/src/router'
 
 /**
  * A wrapper for your app that provides the TRPC context.

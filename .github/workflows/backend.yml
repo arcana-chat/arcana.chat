@@ -31,7 +31,7 @@ jobs:
         uses: ./.github/actions/pnpm-install
 
       - name: Migrate database
-        run: pnpm --filter @t4/api migrate
+        run: pnpm --filter @arcana/api migrate
         env:
           NO_D1_WARNING: true
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}

@@ -1,4 +1,4 @@
-import { CustomToast, TamaguiProvider, TamaguiProviderProps, ToastProvider } from '@t4/ui'
+import { CustomToast, TamaguiProvider, TamaguiProviderProps, ToastProvider } from '@arcana/ui'
 import { useColorScheme } from 'react-native'
 import { Metrics, SafeAreaProvider } from 'react-native-safe-area-context'
 import { ToastViewport } from './toast/ToastViewport'

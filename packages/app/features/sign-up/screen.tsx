@@ -1,6 +1,6 @@
-import { YStack } from '@t4/ui'
+import { YStack } from '@arcana/ui'
 import { useRouter } from 'solito/router'
-import { SignUpSignInComponent } from '@t4/ui/src/SignUpSignIn'
+import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn'
 import { signUp } from 'app/utils/supabase'
 import { Provider } from '@supabase/supabase-js'
 import { signInWithOAuth } from 'app/utils/supabase/auth'

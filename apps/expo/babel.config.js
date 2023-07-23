@@ -11,8 +11,8 @@ module.exports = function (api) {
           path: '../../.env',
           allowlist: ['NEXT_PUBLIC_SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_PUBLIC_KEY'],
           safe: false,
-          allowUndefined: true
-        }
+          allowUndefined: true,
+        },
       ],
       [
         require.resolve('babel-plugin-module-resolver'),
@@ -21,11 +21,11 @@ module.exports = function (api) {
           alias: {
             // define aliases to shorten the import paths
             app: '../../packages/app',
-            '@t4/api': '../../packages/api',
-            '@t4/ui': '../../packages/ui'
+            '@arcana/api': '../../packages/api',
+            '@arcana/ui': '../../packages/ui',
           },
-          extensions: ['.js', '.jsx', '.tsx', '.ios.js', '.android.js']
-        }
+          extensions: ['.js', '.jsx', '.tsx', '.ios.js', '.android.js'],
+        },
       ],
       // if you want reanimated support
       // 'react-native-reanimated/plugin',
@@ -35,18 +35,18 @@ module.exports = function (api) {
             [
               '@tamagui/babel-plugin',
               {
-                components: ['@t4/ui', 'tamagui'],
-                config: './tamagui.config.ts'
-              }
-            ]
+                components: ['@arcana/ui', 'tamagui'],
+                config: './tamagui.config.ts',
+              },
+            ],
           ]),
       [
         'transform-inline-environment-variables',
         {
-          include: 'TAMAGUI_TARGET'
-        }
+          include: 'TAMAGUI_TARGET',
+        },
       ],
-      'jotai/babel/plugin-react-refresh'
-    ]
+      'jotai/babel/plugin-react-refresh',
+    ],
   }
 }
