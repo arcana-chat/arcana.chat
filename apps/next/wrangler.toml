@@ -1,8 +1,10 @@
 [env.preview]
 name = "arcana-chat-preview"
 workers_dev = true
+compatibility_flags = [ "nodejs_compat" ]
 
 [env.production]
 name = "arcana-chat"
 route = "arcana.chat/*"
 workers_dev = false
+compatibility_flags = [ "nodejs_compat" ]
