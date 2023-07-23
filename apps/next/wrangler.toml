@@ -1,8 +1,8 @@
 [env.preview]
-name = "t4-stack-preview"
+name = "arcana-chat-preview"
 workers_dev = true
 
 [env.production]
-name = "t4-stack"
-route = "app.t4stack.com/*"
+name = "arcana-chat"
+route = "arcana.chat/*"
 workers_dev = false

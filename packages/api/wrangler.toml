@@ -1,7 +1,7 @@
-name = "t4-api"
+name = "arcana-api"
 compatibility_date = "2023-01-01"
 send_metrics = false
-account_id = "719e3374c9fabba87860b809acb3c939"
+account_id = "2ddea40d0f31f068bc3ec24c98a5f2b1"
 
 [[ d1_databases ]]
 binding = "DB"
