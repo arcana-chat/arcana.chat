@@ -13,7 +13,7 @@ import type { AppProps } from 'next/app'
 import { SolitoImageProvider } from 'solito/image'
 
 if (process.env.NODE_ENV === 'production') {
-  require('./tamagui.css')
+  require('../public/tamagui.css')
 }
 
 const imageURL = process.env.NEXT_PUBLIC_APP_URL as `https:${string}`
