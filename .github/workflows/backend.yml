@@ -32,7 +32,7 @@ jobs:
         uses: ./.github/actions/pnpm-install
 
       - name: Migrate database
-        run: pnpx wrangler d1 migrations apply production
+        run: cd packages/api; pnpx wrangler d1 migrations apply production
         env:
           NO_D1_WARNING: true
           CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
