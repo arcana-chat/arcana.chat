@@ -75,7 +75,6 @@ module.exports = function () {
       legacyBrowsers: false,
       serverActions: true,
       serverComponentsExternalPackages: ['@trpc/server'],
-      runtime: 'edge',
     },
   };
 
