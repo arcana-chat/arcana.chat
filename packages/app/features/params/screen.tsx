@@ -1,15 +1,12 @@
-import { Button, H2, Paragraph, YStack } from '@arcana/ui'
-import { ChevronLeft } from '@tamagui/lucide-icons'
-import { createParam } from 'solito'
-import { useLink } from 'solito/link'
-
-const { useParam } = createParam<{ id: string }>()
+import { Button, H2, Paragraph, YStack } from '@arcana/ui';
+import { ChevronLeft } from '@tamagui/lucide-icons';
+import { useLink, useParams } from 'solito/navigation';
 
 export const ParamsScreen = (): React.ReactNode => {
-  const [id] = useParam('id')
+  const { id } = useParams<{ id: string }>();
   const link = useLink({
     href: '/',
-  })
+  });
 
   return (
     <YStack flex={1} justifyContent="center" alignItems="center" space>
@@ -21,5 +18,5 @@ export const ParamsScreen = (): React.ReactNode => {
         Go Home
       </Button>
     </YStack>
-  )
-}
+  );
+};

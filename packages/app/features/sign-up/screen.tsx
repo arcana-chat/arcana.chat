@@ -1,34 +1,34 @@
-import { YStack } from '@arcana/ui'
-import { useRouter } from 'solito/router'
-import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn'
-import { signUp } from 'app/utils/supabase'
-import { Provider } from '@supabase/supabase-js'
-import { signInWithOAuth } from 'app/utils/supabase/auth'
+import { YStack } from '@arcana/ui';
+import { useRouter } from 'solito/navigation';
+import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn';
+import { signUp } from 'app/utils/supabase';
+import { Provider } from '@supabase/supabase-js';
+import { signInWithOAuth } from 'app/utils/supabase/auth';
 
 export const SignUpScreen = (): React.ReactNode => {
-  const { push } = useRouter()
+  const { push } = useRouter();
 
   const handleOAuthSignInWithPress = async (provider: Provider) => {
-    const { error } = await signInWithOAuth({ provider: provider })
+    const { error } = await signInWithOAuth({ provider: provider });
 
     if (error) {
-      console.log('OAuth Sign in failed', error)
-      return
+      console.log('OAuth Sign in failed', error);
+      return;
     }
 
-    push('/')
-  }
+    push('/');
+  };
 
   const handleEmailSignUpWithPress = async (emailAddress, password) => {
-    const res = await signUp(emailAddress, password)
+    const res = await signUp(emailAddress, password);
 
     if (res.error) {
-      console.log('Sign up failed', res.error)
-      return
+      console.log('Sign up failed', res.error);
+      return;
     }
 
-    push('/')
-  }
+    push('/');
+  };
 
   return (
     <YStack flex={1} justifyContent="center" alignItems="center" space>
@@ -38,5 +38,5 @@ export const SignUpScreen = (): React.ReactNode => {
         handleEmailWithPress={handleEmailSignUpWithPress}
       />
     </YStack>
-  )
-}
+  );
+};

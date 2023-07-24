@@ -14,7 +14,7 @@ import {
 import { ChevronDown } from '@tamagui/lucide-icons'
 import React, { useEffect, useState } from 'react'
 import { Linking } from 'react-native'
-import { useLink } from 'solito/link'
+import { useLink } from 'solito/navigation'
 import { isUserSignedIn, signOut } from 'app/utils/supabase'
 import Constants from 'expo-constants'
 import { useSheetOpen } from '@arcana/ui/src/atoms/sheet'

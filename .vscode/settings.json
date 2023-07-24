@@ -6,7 +6,7 @@
     "**/.svn": false,
     "**/.hg": false,
     "**/CVS": false,
-    "**/.DS_Store": false,
+    "**/.DS_Store": true,
     "**/Thumbs.db": false,
     "**/.wrangler": false,
     "**/migrations": false,

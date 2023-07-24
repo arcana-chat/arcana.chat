@@ -1,17 +1,17 @@
 /** @type {import('next').NextConfig} */
-const { withTamagui } = require('@tamagui/next-plugin')
-const { join } = require('path')
+const { withTamagui } = require('@tamagui/next-plugin');
+const { join } = require('path');
 
 const boolVals = {
   true: true,
   false: false,
-}
+};
 
 const disableExtraction =
-  boolVals[process.env.DISABLE_EXTRACTION] ?? process.env.NODE_ENV === 'development'
+  boolVals[process.env.DISABLE_EXTRACTION] ?? process.env.NODE_ENV === 'development';
 
 // Enabling causes FOUC on page refreshes
-const optimizeCss = false // boolVals[process.env.OPTIMIZE_CSS] ?? process.env.NODE_ENV === 'production'
+const optimizeCss = false; // boolVals[process.env.OPTIMIZE_CSS] ?? process.env.NODE_ENV === 'production'
 
 const plugins = [
   withTamagui({
@@ -24,11 +24,11 @@ const plugins = [
     useReactNativeWebLite: true,
     shouldExtract: (path) => {
       if (path.includes(join('packages', 'app'))) {
-        return true
+        return true;
       }
     },
   }),
-]
+];
 
 module.exports = function () {
   /** @type {import('next').NextConfig} */
@@ -68,20 +68,22 @@ module.exports = function () {
        - Solito doesn't support app dir at the moment - You'll have to remove Solito.
        - The `/app` in this starter has the same routes as the `/pages` directory. You should probably remove `/pages` after enabling this.
       */
-      appDir: false,
+      appDir: true,
       optimizeCss,
       forceSwcTransforms: true,
       scrollRestoration: true,
       legacyBrowsers: false,
+      serverActions: true,
+      serverComponentsExternalPackages: ['@trpc/server'],
     },
-  }
+  };
 
   for (const plugin of plugins) {
     config = {
       ...config,
       ...plugin(config),
-    }
+    };
   }
 
-  return config
-}
+  return config;
+};

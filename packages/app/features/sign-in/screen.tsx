@@ -1,12 +1,12 @@
-import { YStack } from '@arcana/ui'
-import { signIn } from 'app/utils/supabase'
-import { useRouter } from 'solito/router'
-import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn'
-import { Provider, SignInWithOAuthCredentials } from '@supabase/supabase-js'
-import { signInWithOAuth } from 'app/utils/supabase/auth'
+import { YStack } from '@arcana/ui';
+import { signIn } from 'app/utils/supabase';
+import { useRouter } from 'solito/navigation';
+import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn';
+import { Provider, SignInWithOAuthCredentials } from '@supabase/supabase-js';
+import { signInWithOAuth } from 'app/utils/supabase/auth';
 
 export const SignInScreen = (): React.ReactNode => {
-  const { push } = useRouter()
+  const { push } = useRouter();
 
   const OAUTH_CREDENTIALS: Record<Provider, SignInWithOAuthCredentials> = {
     // Verified providers
@@ -32,29 +32,29 @@ export const SignInScreen = (): React.ReactNode => {
     zoom: { provider: 'zoom' },
     azure: { provider: 'azure' },
     workos: { provider: 'workos' },
-  }
+  };
 
   const handleOAuthSignInWithPress = async (provider: Provider) => {
-    const { error } = await signInWithOAuth({ provider: provider })
+    const { error } = await signInWithOAuth({ provider: provider });
 
     if (error) {
-      console.log('OAuth Sign in failed', error)
-      return
+      console.log('OAuth Sign in failed', error);
+      return;
     }
 
-    push('/')
-  }
+    push('/');
+  };
 
   const handleEmailSignInWithPress = async (emailAddress, password) => {
-    const res = await signIn(emailAddress, password)
+    const res = await signIn(emailAddress, password);
 
     if (res.error) {
-      console.log('Sign in failed', res.error)
-      return
+      console.log('Sign in failed', res.error);
+      return;
     }
 
-    push('/')
-  }
+    push('/');
+  };
 
   return (
     <YStack flex={1} justifyContent="center" alignItems="center" space>
@@ -64,5 +64,5 @@ export const SignInScreen = (): React.ReactNode => {
         handleEmailWithPress={handleEmailSignInWithPress}
       />
     </YStack>
-  )
-}
+  );
+};

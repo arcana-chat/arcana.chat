@@ -17,10 +17,10 @@
   "dependencies": {
     "@cloudflare/d1": "^1.4.1",
     "@hono/trpc-server": "^0.1.0",
-    "@trpc/server": "^10.34.0",
+    "@trpc/server": "^10.35.0",
     "@tsndr/cloudflare-worker-jwt": "^2.2.1",
     "drizzle-orm": "^0.27.2",
-    "hono": "^3.3.0",
+    "hono": "^3.3.3",
     "wrangler": "^3.3.0"
   },
   "devDependencies": {
