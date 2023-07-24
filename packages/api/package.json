@@ -20,7 +20,8 @@
     "@trpc/server": "^10.34.0",
     "@tsndr/cloudflare-worker-jwt": "^2.2.1",
     "drizzle-orm": "^0.27.2",
-    "hono": "^3.3.0"
+    "hono": "^3.3.0",
+    "wrangler": "^3.3.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230710.1",
@@ -28,7 +29,6 @@
     "dotenv-cli": "^7.2.1",
     "drizzle-kit": "^0.19.5",
     "eslint": "^8.44.0",
-    "typescript": "^5.1.6",
-    "wrangler": "^3.2.0"
+    "typescript": "^5.1.6"
   }
 }
