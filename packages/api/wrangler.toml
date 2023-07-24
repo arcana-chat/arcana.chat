@@ -5,8 +5,8 @@ account_id = "2ddea40d0f31f068bc3ec24c98a5f2b1"
 
 [[ d1_databases ]]
 binding = "DB"
-database_name = "production"
-database_id = "aa5e3923-0f1b-469a-8bb8-d10fb866efe0"
+database_name = "arcana-chat-prod"
+database_id = "c9fc601b-dddb-4218-a963-bf0add0fd5c3"
 migrations_dir = "migrations"
 
 # The necessary secrets are:
