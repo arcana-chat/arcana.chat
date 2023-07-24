@@ -41,9 +41,6 @@ importers:
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
-      wrangler:
-        specifier: ^3.3.0
-        version: 3.3.0
 
   apps/expo:
     dependencies:

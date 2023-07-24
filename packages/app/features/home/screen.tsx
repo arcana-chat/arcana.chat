@@ -56,22 +56,12 @@ export function HomeScreen() {
     <ScrollView>
       <YStack flex={1} justifyContent="center" alignItems="center" padding="$4" space="$4">
         <SolitoImage src="/arcana-logo.png" width={128} height={128} alt="T4 Logo" />
-        <H1 textAlign="center">👋 Hello, T4 App</H1>
+        <H1 textAlign="center">🔮 Arcana</H1>
         <Separator />
-        <Paragraph textAlign="center" size={'$2'}>
-          Unifying React Native + Web.
+        <Paragraph textAlign="center" size="$2">
+          AI Powered Tarrot
         </Paragraph>
-        <Paragraph textAlign="center" size={'$2'}>
-          The T4 Stack is made by{' '}
-          <Anchor href="https://twitter.com/ogtimothymiller" target="_blank">
-            Tim Miller
-          </Anchor>
-          , give it a star{' '}
-          <Anchor href="https://github.com/timothymiller/t4-app" target="_blank" rel="noreferrer">
-            on Github.
-          </Anchor>
-        </Paragraph>
-        <Paragraph textAlign="center" size={'$2'}>
+        <Paragraph textAlign="center" size="$2">
           Tamagui is made by{' '}
           <Anchor href="https://twitter.com/natebirdman" target="_blank">
             Nate Weinert
@@ -81,8 +71,6 @@ export function HomeScreen() {
             on Github.
           </Anchor>
         </Paragraph>
-
-        <Button onPress={() => Linking.openURL('https://t4stack.com/')}>Learn More...</Button>
 
         <H3>🦮🐴 App Demos</H3>
         <YStack space="$2">

@@ -32,6 +32,7 @@ jobs:
       - name: 📥 Monorepo install
         uses: ./.github/actions/pnpm-install
 
+      # This is broken, I don't know why
       # - name: Migrate database
       #   run: pnpm --filter @arcana/api migrate
       #   env:
