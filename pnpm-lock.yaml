@@ -305,7 +305,7 @@ importers:
         specifier: 4.7.1
         version: 4.7.1(react-native@0.72.3)(react@18.2.0)
       solito:
-        specifier: ^4.0.0
+        specifier: 4.0.0
         version: 4.0.0(patch_hash=svfkgfntr2bn5ny4frdode4eci)
     devDependencies:
       '@types/react':
