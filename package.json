@@ -29,7 +29,8 @@
     "prettier": "^3.0.0",
     "react-native-url-polyfill": "^2.0.0",
     "turbo": "^1.10.9",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "wrangler": "^3.3.0"
   },
   "engines": {
     "node": ">=18.16",
