@@ -124,23 +124,6 @@ Build native apps for iOS, Android, macOS, Windows, and Linux using the same cod
   </a>
 </p>
 
-## ❓ Why T4?
-
-- Small learning curve
-- Instant feedback, rapid development
-- Universal across **React Native** & **React Web**
-  - [Data fetching](https://tanstack.com/query/latest)
-  - [Styling](https://tamagui.dev)
-  - [Authentication](https://supabase.com)
-  - [Navigation](https://solito.dev)
-- High code re-use
-- Low bundle size
-- Edge compatible
-- Fast startup time
-- Simple setup
-- Allows for platform-specific code when needed.
-- Type-safety
-
 ## 📦 What's Included
 
 - [Tamagui](https://tamagui.dev) - A UI kit for building beautiful and responsive user interfaces.
@@ -165,33 +148,3 @@ To scaffold an app using `create-t4-app`, run any of the following commands.
 ```bash
 pnpm dev
 ```
-
-## ✨ Features
-
-- ✅ Tamagui UI kit across all platforms.
-- ✅ Supabase Auth
-- ✅ PNPM support
-- ✅ Uses Next.js for building web apps.
-- ✅ Uses Expo for building native mobile apps.
-- ✅ PWA by default for native desktop support. No Electron required.
-- ✅ Uses Cloudflare Workers for serverless functions.
-- ✅ No Docker containers required.
-- ✅ Uses tRPC & Tanstack Query for fetching & caching across all platforms.
-- ✅ Authentication across all platforms.
-- ✅ Powered by TypeScript for type safety and better developer experience.
-- ✅ Comes with pre-configured ESLint and Prettier for code consistency.
-- ✅ Github Action publishing for Expo apps
-- ✅ Database migration in CI/CD
-- ✅ Tauri Support
-
-## ⭐ Wish List
-
-I would like to add the following features to `create-t4-app` in the future:
-
-- [ ] Legend State
-- [ ] GraphQL (type-safe) data fetching
-  - ⏲️ [GQty](https://gqty.dev) - A No-GraphQL client for TypeScript.
-  - 🔄 [Garph](https://garph.dev) - Fullstack GraphQL Framework for TypeScript
-- [ ] 📚 [Storybook](https://storybook.js.org) support
-- [ ] 🖌️ [Chromatic](https://chromatic.com) support
-- [ ] Million.js example - once React Native support is added
