@@ -3,6 +3,7 @@ import {
   Button,
   H1,
   H3,
+  Image,
   Paragraph,
   ScrollView,
   Separator,
@@ -10,50 +11,57 @@ import {
   XStack,
   YStack,
   useToastController,
-} from '@arcana/ui'
-import { ChevronDown } from '@tamagui/lucide-icons'
-import React, { useEffect, useState } from 'react'
-import { Linking } from 'react-native'
-import { useLink } from 'solito/navigation'
-import { isUserSignedIn, signOut } from 'app/utils/supabase'
-import Constants from 'expo-constants'
-import { useSheetOpen } from '@arcana/ui/src/atoms/sheet'
-import { SolitoImage } from 'solito/image'
+} from '@arcana/ui';
+import { ChevronDown } from '@tamagui/lucide-icons';
+import React, { useEffect, useState } from 'react';
+import { useLink } from 'solito/navigation';
+import { isUserSignedIn, signOut } from 'app/utils/supabase';
+import Constants from 'expo-constants';
+import { useSheetOpen } from '@arcana/ui/src/atoms/sheet';
+import { SolitoImage } from 'solito/image';
 
 export function HomeScreen() {
-  const [isSignedIn, setIsSignedIn] = useState(false)
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
     const fetchSignedInStatus = async () => {
-      const signedInStatus = await isUserSignedIn()
-      setIsSignedIn(signedInStatus)
-    }
+      const signedInStatus = await isUserSignedIn();
+      setIsSignedIn(signedInStatus);
+    };
 
-    fetchSignedInStatus()
-  }, [])
+    fetchSignedInStatus();
+  }, []);
 
   const signInLink = useLink({
     href: '/sign-in',
-  })
+  });
 
   const signUpLink = useLink({
     href: '/sign-up',
-  })
+  });
 
   const dataFetchingLink = useLink({
     href: '/data-fetching',
-  })
+  });
 
   const infiniteListLink = useLink({
     href: '/infinite-list',
-  })
+  });
 
   const paramsLink = useLink({
     href: '/params/tim',
-  })
+  });
 
   return (
     <ScrollView>
+      <Image
+        source={{
+          uri: '/images/tarot-cards.jpg',
+        }}
+        width={128}
+        height={128}
+        alt="Background"
+      />
       <YStack flex={1} justifyContent="center" alignItems="center" padding="$4" space="$4">
         <SolitoImage src="/arcana-logo.png" width={128} height={128} alt="T4 Logo" />
         <H1 textAlign="center">🔮 Arcana</H1>
@@ -88,8 +96,8 @@ export function HomeScreen() {
         {isSignedIn ? (
           <Button
             onPress={async () => {
-              await signOut()
-              setIsSignedIn(false)
+              await signOut();
+              setIsSignedIn(false);
             }}
             space="$2"
           >
@@ -107,13 +115,13 @@ export function HomeScreen() {
         )}
       </YStack>
     </ScrollView>
-  )
+  );
 }
 
 const SheetDemo = (): React.ReactNode => {
-  const [open, setOpen] = useSheetOpen()
-  const [position, setPosition] = useState(0)
-  const toast = useToastController()
+  const [open, setOpen] = useSheetOpen();
+  const [position, setPosition] = useState(0);
+  const toast = useToastController();
 
   return (
     <>
@@ -137,17 +145,17 @@ const SheetDemo = (): React.ReactNode => {
             circular
             icon={ChevronDown}
             onPress={() => {
-              setOpen(false)
-              const isExpoGo = Constants.appOwnership === 'expo'
+              setOpen(false);
+              const isExpoGo = Constants.appOwnership === 'expo';
               if (!isExpoGo) {
                 toast.show('Sheet closed!', {
                   message: 'Just showing how toast works...',
-                })
+                });
               }
             }}
           />
         </Sheet.Frame>
       </Sheet>
     </>
-  )
-}
+  );
+};

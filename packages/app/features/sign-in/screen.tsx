@@ -37,7 +37,7 @@ export const SignInScreen = (): React.ReactNode => {
 
   const handleOAuthSignInWithPress = async (provider: Provider) => {
     const { error } = await signInWithOAuth({ provider });
-    
+
     if (error) {
       console.log('OAuth Sign in failed', error);
       return;
