@@ -1,21 +1,17 @@
 <p align="center">
   <a href="https://t4stack.com" target="_blank" rel="noopener noreferrer">
     <picture>
-      <img src="https://github.com/timothymiller/t4-app/blob/main/apps/next/public/t4-logo-large.png?raw=true" width="200" alt="Logo of Create T4 App">
+      <img src="https://github.com/arcana-chat/arcana.chat/blob/main/apps/next/public/arcana-logo.png?raw=true" width="200" alt="Logo of Create T4 App">
     </picture>
   </a>
 </p>
 
 <h1 align="center">
-  create-t4-app
+  🔮 Arcana
 </h1>
 
 <p align="center">
-  Interactive CLI to start a full-stack, typesafe, universal Expo & Next.js app on Cloudflare's edge platform.
-</p>
-
-<p align="center">
-  Get started with the <a rel="noopener noreferrer" target="_blank" href="https://t4stack.com">T4 Stack</a> by running <code>pnpm create t4-app</code>
+  A place to explore the world of tarot.
 </p>
 
 <p align="center">
@@ -24,19 +20,26 @@
   </a>&nbsp;
   <a href = "https://www.npmjs.com/package/create-t4-app">
     <img src="https://img.shields.io/npm/dw/create-t4-app?logo=npm&style=for-the-badge&color=CC3534" alt="Weekly downloads for create-t4-app on npmjs.org">
-  </a>&nbsp;
-  <a href="https://marketplace.visualstudio.com/items?itemName=albbus.t4-app-tools">
-    <img src="https://img.shields.io/visual-studio-marketplace/i/albbus.t4-app-tools?logo=visual-studio-code&style=for-the-badge&color=0078D7" alt="VSCode Extension Installs">
   </a>
 </p>
 
-## 🍔 The T4 Stack
+## arcana.chat
 
-The T4 Stack is a universal web and native stack made by [Tim Miller](https://twitter.com/ogtimothymiller) focused on **developer experience**, **rapid development**, and **performance**.
+**Cloudflare**
 
-Easy integration with **Cloudflare** services, such as R2 & D1 enable developers to build apps with **AI-powered features** at a **lower cost** compared to AWS.
+> Cloudflare is a powerful content delivery network (CDN) and edge computing platform. It provides services like Cloudflare Pages for hosting static websites, Cloudflare Workers for serverless computing, and more. We use Cloudflare to ensure fast and secure delivery of our web applications.
 
-👉 Further documentation can be found on the [T4 Stack website](https://t4stack.com). 👈
+**Next.js**
+
+> Next.js is a popular React framework for building server-side rendered (SSR) and static websites. It offers features like automatic code splitting, server-side rendering, and static site generation. We use Next.js to create robust and performant web applications.
+
+**Expo**
+
+> Expo is a development platform for building cross-platform mobile apps using React Native. It provides various tools and libraries to streamline the development process and enables us to create mobile applications for both iOS and Android with ease.
+
+**TypeScript**
+
+> TypeScript is a statically typed superset of JavaScript that adds strong typing to the language. It helps catch errors during development, improves code maintainability, and enhances the overall development experience. We use TypeScript to ensure type safety and improve code quality in our projects.
 
 <br>
 <p align="center">
@@ -74,7 +77,8 @@ Easy integration with **Cloudflare** services, such as R2 & D1 enable developers
 
 ### 🏢 Global State Management
 
-- 🧩 [Jotai](https://jotai.org)
+- 🧩 [Jotai](https://jotai.org) (_is going to change to Legend State_)
+- 🗡️ [Legend State](https://legendapp.com/open-source/state/)
 
 ### ⚙️ Backend
 
@@ -88,13 +92,7 @@ Easy integration with **Cloudflare** services, such as R2 & D1 enable developers
 
 - 🔑 [Supabase](https://supabase.com/auth)
 
-## 📖 Background
-
-T4 is a project starter kit for building **type-safe**, **native** & **web** applications in TypeScript using Tamagui, tRPC, and Turborepo. Deploy to Cloudflare for a global edge network. All at a fraction of the cost of AWS, Vercel, or Azure.
-
-It provides a unified, opinionated, & minimalistic setup for quickly getting started with building native & web apps, using the same code, without having to worry about the complexities of setting up a development environment.
-
-### 💪 Build Apps for All Platforms
+## 🌐📱 Supported Platforms
 
 - 📱 iOS
 - 🤖 Android
@@ -103,18 +101,26 @@ It provides a unified, opinionated, & minimalistic setup for quickly getting sta
   - 💻 macOS
   - 🪟 Windows
   - 🐧 Linux
-- 🧪 (Experimental) Desktop support via Tauri
 
 Build native apps for iOS, Android, macOS, Windows, and Linux using the same codebase.
 
-#### Never worry about using XCode or Android Studio again
+## 📦 Resources
 
 <p align="left">
+  <a href="https://vscode.dev">
+    <img src="https://img.shields.io/badge/VSCode-%23007ACC.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white" />
+  </a> 
+  <a href="https://pnpm.io">
+    <img src="https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220" alt="pnpm is required to use `arcana.chat`">
+  </a>
   <a href="https://developer.android.com/studio">
     <img src="https://img.shields.io/badge/Android_Studio-3DDC84?style=for-the-badge&logo=android-studio&logoColor=white" alt="Android Studio">
-  </a>&nbsp;
+  </a>
   <a href="https://developer.apple.com/xcode/">
     <img src="https://img.shields.io/badge/Xcode-007ACC?style=for-the-badge&logo=Xcode&logoColor=white" alt="XCode">
+  </a>
+  <a href="https://tamagui.dev">
+    <img src="https://img.shields.io/badge/Tamagui-%233F3F3F.svg?style=for-the-badge&logo=https://github.com/tamagui/tamagui/blob/master/apps/site/public/tamagui-icon.svg?raw=true&logoColor=E87D00" alt="Tamagui">
   </a>
 </p>
 
@@ -157,20 +163,8 @@ To scaffold an app using `create-t4-app`, run any of the following commands.
 ### **pnpm**
 
 ```bash
-pnpm create t4-app
+pnpm dev
 ```
-
-### **Tauri**
-
-If you would like to use Tauri use:
-
-```bash
-pnpm create t4-app --tauri
-```
-
-## 🧩 VSCode Extension
-
-The VSCode extension is optional but highly recommended. It provides a better developer experience by providing code actions to help you scaffold your app. You can find more info in the [docs](https://t4stack.com/extension) or install it from the [VSCode Marketplace](https://marketplace.visualstudio.com/items?itemName=albbus.t4-app-tools).
 
 ## ✨ Features
 
@@ -201,32 +195,3 @@ I would like to add the following features to `create-t4-app` in the future:
 - [ ] 📚 [Storybook](https://storybook.js.org) support
 - [ ] 🖌️ [Chromatic](https://chromatic.com) support
 - [ ] Million.js example - once React Native support is added
-
-## 💬 Community
-
-For help, discussion about best practices, or any other conversation that would benefit `create-t4-app`:
-
-[Join the T4 Discord Server](https://discord.gg/wj2GV7AvQd)
-
-## 🫶 Contributors
-
-We welcome contributions from anyone and everyone. Please read our [contributing guidelines](https://github.com/timothymiller/t4-app/blob/main/CONTRIBUTING.md) for more information on how to get started.
-
-## 👏 Special Thanks
-
-- [Cloudflare Developers](https://twitter.com/CloudflareDev)
-- [Shopify Developers](https://twitter.com/ShopifyDevs)
-- [Drizzle Developers](https://twitter.com/DrizzleOrm)
-- [Yusuke Wada](https://twitter.com/yusukebe) - Creator of Hono.js
-- [Tanner Linsley](https://twitter.com/tannerlinsley) - Creator of TanStack
-- [Nate Birdman](https://twitter.com/natebirdman) - Creator of Tamagui
-- [Tim Neutkens](https://twitter.com/timneutkens) - Co-author of Next.js
-- [Guillermo Rauch](https://twitter.com/rauchg) - Co-author of Next.js
-- [Fernando Rojo](https://twitter.com/fernandotherojo) - Creator of Solito
-- [Daishi Kato](https://twitter.com/dai_shi) Creator of Jotai
-- [Jared Palmer](https://twitter.com/jaredpalmer) - Creator of Turborepo
-- [Evan Bacon](https://twitter.com/Baconbrix) - Maintainer of Expo
-
-## ⚖️ License
-
-**Create T4 App** is licensed under the [Apache License](https://github.com/timothymiller/t4-app/blob/main/LICENSE).
