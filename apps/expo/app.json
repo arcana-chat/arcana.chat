@@ -18,7 +18,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.t4.app"
+      "bundleIdentifier": "com.arcana.app"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,10 +32,10 @@
     },
     "extra": {
       "eas": {
-        "projectId": "85fc6ccd-0ce1-4e4d-804c-b15df989f97e"
+        "projectId": "c9e063fa-fb1f-4d97-b738-c1d40812e396"
       }
     },
-    "owner": "timothymiller",
+    "owner": "moon.arcana",
     "plugins": ["expo-router"],
     "experiments": {
       "tsconfigPaths": true,
