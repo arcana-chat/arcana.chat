@@ -1,7 +1,9 @@
-import { SignInWithOAuthCredentials } from '@supabase/supabase-js'
-import { Linking } from 'react-native'
-import { getToken, saveToken } from './cache'
-import { supabase } from './init'
+import { SignInWithOAuthCredentials } from '@supabase/supabase-js';
+import { Linking } from 'react-native';
+import { getToken, saveToken } from './cache';
+import { supabase } from './init';
+
+const redirectSource = __DEV__ ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_APP_URL;
 
 // Authentication methods
 const signIn = async (email, password) => {
@@ -11,25 +13,25 @@ const signIn = async (email, password) => {
   } = await supabase.auth.signInWithPassword({
     email: email,
     password: password,
-  })
-  const access_token = session?.access_token
-  const refresh_token = session?.refresh_token
+  });
+  const access_token = session?.access_token;
+  const refresh_token = session?.refresh_token;
 
-  await saveToken('refresh_token', refresh_token || '')
+  await saveToken('refresh_token', refresh_token || '');
 
-  return { user, error, access_token, refresh_token }
-}
+  return { user, error, access_token, refresh_token };
+};
 
 const signInWithOAuth = async (credentials: SignInWithOAuthCredentials) => {
-  const { data, error } = await supabase.auth.signInWithOAuth(credentials)
+  const { data, error } = await supabase.auth.signInWithOAuth(credentials);
 
   if (data?.url) {
     // Redirect the user to the identity provider's authentication flow
-    Linking.openURL(data.url)
+    Linking.openURL(data.url);
   }
 
-  return { data, error }
-}
+  return { data, error };
+};
 
 const signUp = async (email, password) => {
   const {
@@ -38,66 +40,66 @@ const signUp = async (email, password) => {
   } = await supabase.auth.signUp({
     email: email,
     password: password,
-  })
+  });
 
-  const access_token = session?.access_token
-  const refresh_token = session?.refresh_token
+  const access_token = session?.access_token;
+  const refresh_token = session?.refresh_token;
 
-  await saveToken('refresh_token', refresh_token || '')
+  await saveToken('refresh_token', refresh_token || '');
 
-  return { user, error, access_token, refresh_token }
-}
+  return { user, error, access_token, refresh_token };
+};
 
 const signOut = async () => {
-  await saveToken('refresh_token', '')
-  await supabase.auth.signOut()
-}
+  await saveToken('refresh_token', '');
+  await supabase.auth.signOut();
+};
 
 const sendPasswordResetEmail = async (email) => {
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/password-reset/update-password`,
-  })
-  return { data, error }
-}
+    redirectTo: `${redirectSource}/password-reset/update-password`,
+  });
+  return { data, error };
+};
 
 const updatePassword = async (newPassword) => {
   const { data, error } = await supabase.auth.updateUser({
     password: newPassword,
-  })
-  return { data, error }
-}
+  });
+  return { data, error };
+};
 
 const getUser = async () => {
   const {
     data: { user },
     error,
-  } = await supabase.auth.getUser()
+  } = await supabase.auth.getUser();
 
-  return { user, error }
-}
+  return { user, error };
+};
 
 const isUserSignedIn = async () => {
   const {
     data: { session },
-  } = await supabase.auth.getSession()
+  } = await supabase.auth.getSession();
 
   if (session === null || session.user === null) {
-    const refresh_token = await getToken('refresh_token')
+    const refresh_token = await getToken('refresh_token');
 
     if (refresh_token && refresh_token !== '') {
-      const { data, error } = await supabase.auth.refreshSession({ refresh_token })
+      const { data, error } = await supabase.auth.refreshSession({ refresh_token });
 
       if (error) {
-        console.error('Error refreshing session:', error)
-        return false
+        console.error('Error refreshing session:', error);
+        return false;
       }
 
-      return data.session !== null && data.user !== null
+      return data.session !== null && data.user !== null;
     }
   }
 
-  return session !== null && session.user !== null
-}
+  return session !== null && session.user !== null;
+};
 
 export {
   supabase,
@@ -109,4 +111,4 @@ export {
   signOut,
   getUser,
   isUserSignedIn,
-}
+};

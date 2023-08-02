@@ -19,6 +19,7 @@ export const SignInScreen = (): React.ReactNode => {
     // Unverified providers
     kakao: { provider: 'kakao' },
     twitter: { provider: 'twitter' },
+    figma: { provider: 'figma' },
     github: { provider: 'github' },
     gitlab: { provider: 'gitlab' },
     facebook: { provider: 'facebook' },
@@ -35,14 +36,14 @@ export const SignInScreen = (): React.ReactNode => {
   };
 
   const handleOAuthSignInWithPress = async (provider: Provider) => {
-    const { error } = await signInWithOAuth({ provider: provider });
-
+    const { error } = await signInWithOAuth({ provider });
+    
     if (error) {
       console.log('OAuth Sign in failed', error);
       return;
     }
 
-    push('/');
+    push('/welcome');
   };
 
   const handleEmailSignInWithPress = async (emailAddress, password) => {
@@ -53,7 +54,7 @@ export const SignInScreen = (): React.ReactNode => {
       return;
     }
 
-    push('/');
+    push('/welcome');
   };
 
   return (
