@@ -8,9 +8,12 @@ import {
   ScrollView,
   Separator,
   Sheet,
+  Stack,
   XStack,
   YStack,
+  BlurView,
   useToastController,
+  Text,
 } from '@arcana/ui';
 import { ChevronDown } from '@tamagui/lucide-icons';
 import React, { useEffect, useState } from 'react';
@@ -53,66 +56,24 @@ export function HomeScreen() {
   });
 
   return (
-    <ScrollView>
-      <Image
-        source={{
-          uri: '/images/tarot-cards.jpg',
-        }}
-        width={128}
-        height={128}
-        alt="Background"
-      />
+    <ScrollView
+      contentContainerStyle={{
+        flex: 1,
+      }}
+    >
+      <Stack position="fixed" width="100%" height="100%">
+        <SolitoImage src="/images/tarot-cards.jpg" fill alt="Background" />
+        <BlurView />
+      </Stack>
       <YStack flex={1} justifyContent="center" alignItems="center" padding="$4" space="$4">
-        <SolitoImage src="/arcana-logo.png" width={128} height={128} alt="T4 Logo" />
-        <H1 textAlign="center">🔮 Arcana</H1>
+        <Stack>
+          <H1 size="$14">🔮</H1>
+        </Stack>
+        <H1 textAlign="center">Arcana</H1>
         <Separator />
         <Paragraph textAlign="center" size="$2">
           AI Powered Tarrot
         </Paragraph>
-        <Paragraph textAlign="center" size="$2">
-          Tamagui is made by{' '}
-          <Anchor href="https://twitter.com/natebirdman" target="_blank">
-            Nate Weinert
-          </Anchor>
-          , give it a star{' '}
-          <Anchor href="https://github.com/tamagui/tamagui" target="_blank" rel="noreferrer">
-            on Github.
-          </Anchor>
-        </Paragraph>
-
-        <H3>🦮🐴 App Demos</H3>
-        <YStack space="$2">
-          <Button {...infiniteListLink} space="$2">
-            Infinite List
-          </Button>
-          <Button {...dataFetchingLink} space="$2">
-            Fetching Data
-          </Button>
-          <Button {...paramsLink} space="$2">
-            Params
-          </Button>
-          <SheetDemo />
-        </YStack>
-        {isSignedIn ? (
-          <Button
-            onPress={async () => {
-              await signOut();
-              setIsSignedIn(false);
-            }}
-            space="$2"
-          >
-            Sign Out
-          </Button>
-        ) : (
-          <XStack space="$2">
-            <Button {...signInLink} space="$2">
-              Sign In
-            </Button>
-            <Button {...signUpLink} space="$2">
-              Sign Up
-            </Button>
-          </XStack>
-        )}
       </YStack>
     </ScrollView>
   );
