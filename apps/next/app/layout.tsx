@@ -12,11 +12,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="en">
-      <body>
-        <ArcanaProvider>{children}</ArcanaProvider>
-      </body>
-    </html>
-  );
+  return <ArcanaProvider>{children}</ArcanaProvider>;
 }
