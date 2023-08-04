@@ -55,14 +55,6 @@ module.exports = function () {
         '@arcana/ui/fonts.css': `${resolve(__dirname, '../..')}/packages/ui/assets/fonts.css`,
       };
 
-      webpackConfig.resolve.extensions = [
-        '.web.js',
-        '.web.jsx',
-        '.web.ts',
-        '.web.tsx',
-        ...webpackConfig.resolve.extensions,
-      ];
-
       return webpackConfig;
     },
     transpilePackages: [

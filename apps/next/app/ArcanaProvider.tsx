@@ -1,8 +1,8 @@
 'use client';
 
+import '@arcana/ui/fonts.css';
 import '@tamagui/core/reset.css';
 import '@tamagui/polyfill-dev';
-import '@arcana/ui/fonts.css';
 
 import { NextThemeProvider, useRootTheme } from '@tamagui/next-theme';
 import { Provider, initialWindowMetrics } from 'app/provider';
@@ -30,7 +30,7 @@ export const ArcanaProvider = ({ children }: { children: React.ReactNode }) => {
             __html: Tamagui.getCSS({
               // if you are using "outputCSS" option, you should use this "exclude"
               // if not, then you can leave the option out
-              // exclude: process.env.NODE_ENV === 'production' ? 'design-system' : null,
+              exclude: process.env.NODE_ENV === 'production' ? 'design-system' : null,
             }),
           }}
         />
