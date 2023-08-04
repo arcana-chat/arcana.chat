@@ -22,13 +22,23 @@ export const ArcanaProvider = ({ children }: { children: React.ReactNode }) => {
   useServerInsertedHTML(() => {
     // @ts-ignore
     const rnwStyle = StyleSheet.getSheet();
+    console.log(
+      Tamagui.getCSS({
+        // if you are using "outputCSS" option, you should use this "exclude"
+        // if not, then you can leave the option out
+        exclude: process.env.NODE_ENV === 'production' ? 'design-system' : null,
+      })
+    );
     return (
       <>
         <style dangerouslySetInnerHTML={{ __html: rnwStyle.textContent }} id={rnwStyle.id} />
         <style
-          id="tamagui-css"
           dangerouslySetInnerHTML={{
-            __html: Tamagui.getCSS(),
+            __html: Tamagui.getCSS({
+              // if you are using "outputCSS" option, you should use this "exclude"
+              // if not, then you can leave the option out
+              exclude: process.env.NODE_ENV === 'production' ? 'design-system' : null,
+            }),
           }}
         />
       </>
