@@ -41,6 +41,14 @@ export const ArcanaProvider = ({ children }: { children: React.ReactNode }) => {
             }),
           }}
         />
+        {Tamagui.getNewCSS()}
+        <script
+          key="tamagui-animations-mount"
+          dangerouslySetInnerHTML={{
+            // avoid flash of animated things on enter
+            __html: `document.documentElement.classList.add('t_unmounted')`,
+          }}
+        />
       </>
     );
   });
