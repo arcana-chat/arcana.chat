@@ -1,7 +1,7 @@
 import { ArcanaProvider } from './ArcanaProvider';
 
 export const metadata = {
-  title: '🔮 Arcana',
+  title: 'Arcana',
   description: 'A Tarot Card Reader',
 };
 
@@ -13,10 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ArcanaProvider>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    </ArcanaProvider>
+    <html lang="en">
+      <body>
+        <ArcanaProvider>{children}</ArcanaProvider>
+      </body>
+    </html>
   );
 }
