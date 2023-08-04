@@ -23,6 +23,7 @@ export const ArcanaProvider = ({ children }: { children: React.ReactNode }) => {
     // @ts-ignore
     const rnwStyle = StyleSheet.getSheet();
     console.log(
+      Tamagui.getNewCSS(),
       Tamagui.getCSS({
         // if you are using "outputCSS" option, you should use this "exclude"
         // if not, then you can leave the option out
