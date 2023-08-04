@@ -14,6 +14,7 @@ import {
   BlurView,
   useToastController,
   Text,
+  H2,
 } from '@arcana/ui';
 import { ChevronDown } from '@tamagui/lucide-icons';
 import React, { useEffect, useState } from 'react';
@@ -62,19 +63,19 @@ export function HomeScreen() {
       }}
     >
       <Stack position="fixed" width="100%" height="100%">
-        <SolitoImage src="/images/tarot-cards.jpg" fill alt="Background" />
-        <BlurView />
+        <SolitoImage fill src="/images/tarot-cards.jpg" contentFit="cover" alt="Background" />
+        <BlurView tint="dark" saturation={200} />
       </Stack>
-      <YStack flex={1} justifyContent="center" alignItems="center" padding="$4" space="$4">
-        <Stack>
-          <H1 size="$14">🔮</H1>
+      <XStack flex={1} justifyContent="center" alignItems="center" padding="$4" space="$4">
+        <H1 fontSize={128} paddingVertical="$8" marginTop="$4">
+          🔮
+        </H1>
+        <Stack alignItems="flex-start">
+          <H1 fontSize={128} textAlign="center" fontWeight="700" letterSpacing={4}>
+            Arcana
+          </H1>
         </Stack>
-        <H1 textAlign="center">Arcana</H1>
-        <Separator />
-        <Paragraph textAlign="center" size="$2">
-          AI Powered Tarrot
-        </Paragraph>
-      </YStack>
+      </XStack>
     </ScrollView>
   );
 }

@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const { withTamagui } = require('@tamagui/next-plugin');
-const { join } = require('path');
+const { resolve, join } = require('path');
 
 const boolVals = {
   true: true,
@@ -48,6 +48,22 @@ module.exports = function () {
         transform: '@tamagui/lucide-icons/dist/esm/icons/{{kebabCase member}}',
         skipDefaultConversion: true,
       },
+    },
+    webpack(webpackConfig) {
+      webpackConfig.resolve.alias = {
+        ...(webpackConfig.resolve.alias || {}),
+        '@arcana/ui/fonts.css': `${resolve(__dirname, '../..')}/packages/ui/assets/fonts.css`,
+      };
+
+      webpackConfig.resolve.extensions = [
+        '.web.js',
+        '.web.jsx',
+        '.web.ts',
+        '.web.tsx',
+        ...webpackConfig.resolve.extensions,
+      ];
+
+      return webpackConfig;
     },
     transpilePackages: [
       'solito',

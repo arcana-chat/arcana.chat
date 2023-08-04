@@ -1,0 +1,107 @@
+/*
+ * Inspired from:
+ * LibreCaslonCondensed-Bold.ttf
+ * LibreCaslonCondensed-BoldItalic.ttf
+ * LibreCaslonCondensed-Italic.ttf
+ * LibreCaslonCondensed-Medium.ttf
+ * LibreCaslonCondensed-MediumItalic.ttf
+ * LibreCaslonCondensed-Regular.ttf
+ * LibreCaslonCondensed-SemiBold.ttf
+ * LibreCaslonCondensed-SemiBoldItalic.ttf
+ */
+
+@font-face {
+  font-family: 'Libre Calson Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src:
+    local('Calibre Light'),
+    url('./font/woff/LibreCaslonCondensed-Regular.woff2') format('woff2'),
+    url('./font/otf/LibreCaslonCondensed-Regular.otf') format('opentype'),
+    url('./font/ttf/LibreCaslonCondensed-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Libre Calson Condensed';
+  font-style: normal;
+  font-weight: 500;
+  font-display: block;
+  src:
+    local('Calibre Light'),
+    url('./font/woff/LibreCaslonCondensed-Medium.woff2') format('woff2'),
+    url('./font/otf/LibreCaslonCondensed-Medium.otf') format('opentype'),
+    url('./font/ttf/LibreCaslonCondensed-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Libre Calson Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src:
+    local('Calibre Light'),
+    url('./font/woff/LibreCaslonCondensed-SemiBold.woff2') format('woff2'),
+    url('./font/otf/LibreCaslonCondensed-SemiBold.otf') format('opentype'),
+    url('./font/ttf/LibreCaslonCondensed-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Libre Calson Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src:
+    local('Calibre Light'),
+    url('./font/woff/LibreCaslonCondensed-Bold.woff2') format('woff2'),
+    url('./font/otf/LibreCaslonCondensed-Bold.otf') format('opentype'),
+    url('./font/ttf/LibreCaslonCondensed-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Libre Calson Condensed';
+  font-style: italic;
+  font-weight: 400;
+  font-display: block;
+  src:
+    local('Calibre Light'),
+    url('./font/woff/LibreCaslonCondensed-Italic.woff2') format('woff2'),
+    url('./font/otf/LibreCaslonCondensed-Italic.otf') format('opentype'),
+    url('./font/ttf/LibreCaslonCondensed-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Libre Calson Condensed';
+  font-style: italic;
+  font-weight: 500;
+  font-display: block;
+  src:
+    local('Calibre Light'),
+    url('./font/woff/LibreCaslonCondensed-MediumItalic.woff2') format('woff2'),
+    url('./font/otf/LibreCaslonCondensed-MediumItalic.otf') format('opentype'),
+    url('./font/ttf/LibreCaslonCondensed-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Libre Calson Condensed';
+  font-style: italic;
+  font-weight: 600;
+  font-display: block;
+  src:
+    local('Calibre Light'),
+    url('./font/woff/LibreCaslonCondensed-SemiBoldItalic.woff2') format('woff2'),
+    url('./font/otf/LibreCaslonCondensed-SemiBoldItalic.otf') format('opentype'),
+    url('./font/ttf/LibreCaslonCondensed-SemiBoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Libre Calson Condensed';
+  font-style: italic;
+  font-weight: 700;
+  font-display: block;
+  src:
+    local('Calibre Light'),
+    url('./font/woff/LibreCaslonCondensed-BoldItalic.woff2') format('woff2'),
+    url('./font/otf/LibreCaslonCondensed-BoldItalic.otf') format('opentype'),
+    url('./font/ttf/LibreCaslonCondensed-BoldItalic.ttf') format('truetype');
+}
