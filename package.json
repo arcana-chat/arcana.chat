@@ -16,32 +16,34 @@
     "fix": "manypkg fix",
     "preinstall": "npx only-allow pnpm",
     "postinstall": "pnpm run build",
-    "clean": "git clean -xdf node_modules",
-    "clean:workspaces": "turbo clean"
+    "ui:build": "pnpm --filter ui tamagui-build",
+    "ui:watch": "pnpm --filter ui tamagui-build -- --watch",
+    "dist:clean": "git clean -xdf dist",
+    "pnpm:clean": "find apps packages -depth -type d -name \"node_modules\" -exec git clean -xdf '{}' \\;",
+    "pnpm:nuke": "pnpm pnpm:clean; rm -rf pnpm-lock.yaml;",
+    "clean:workspaces": "turbo clean",
+    "clean": "pnpm dist:clean; pnpm pnpm:clean",
+    "nuke": "pnpm dist:clean; pnpm pnpm:nuke"
   },
   "dependencies": {
-    "@babel/runtime": "^7.22.6",
+    "@babel/runtime": "^7.22.10",
     "@manypkg/cli": "^0.21.0",
-    "@supabase/supabase-js": "^2.26.0",
+    "@nderscore/tamagui-typescript-plugin": "^0.5.3",
+    "@supabase/supabase-js": "^2.32.0",
     "check-dependency-version-consistency": "^4.1.0",
-    "eslint": "^8.44.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.47.0",
+    "miniflare": "3.20230807.0",
     "node-gyp": "^9.4.0",
-    "prettier": "^3.0.0",
+    "prettier": "^3.0.2",
     "react-native-url-polyfill": "^2.0.0",
-    "turbo": "^1.10.9",
-    "typescript": "^5.1.6"
+    "turbo": "^1.10.12",
+    "typescript": "^5.1.6",
+    "workerd": "1.20230807.0"
   },
   "engines": {
     "node": ">=18.16",
     "pnpm": ">=8.6"
   },
-  "packageManager": "pnpm@8.6.5",
-  "pnpm": {
-    "overrides": {
-      "react-refresh": "~0.14.0"
-    },
-    "patchedDependencies": {
-      "solito@4.0.0": "patches/solito@4.0.0.patch"
-    }
-  }
+  "packageManager": "pnpm@8.6.5"
 }

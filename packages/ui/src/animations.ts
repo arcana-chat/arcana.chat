@@ -1,9 +1,6 @@
-import { createAnimations } from '@tamagui/animations-react-native'
-// import type { AnimationDriver } from '@tamagui/web'
+import { createAnimations } from '@tamagui/animations-moti';
 
-// TODO: Where is AnimationConfig exported from?
-// TODO: Should be AnimationDriver<AnimationConfig<any>>
-export const animations: any = createAnimations({
+export const animations = createAnimations({
   bouncy: {
     type: 'spring',
     damping: 10,
@@ -21,4 +18,4 @@ export const animations: any = createAnimations({
     mass: 1.2,
     stiffness: 250,
   },
-})
+});

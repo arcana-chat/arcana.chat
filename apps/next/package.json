@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@arcana/ui": "*",
-    "@tamagui/config": "latest",
-    "@tamagui/next-theme": "latest",
+    "@tamagui/config": "1.55.2",
+    "@tamagui/next-theme": "1.55.2",
     "@trpc/next": "^10.35.0",
     "app": "*",
     "next": "13.4.12",
@@ -22,11 +22,11 @@
     "react-dom": "^18.2.0",
     "react-native": "^0.72.3",
     "react-native-web": "^0.19.7",
-    "react-native-web-lite": "latest",
+    "react-native-web-lite": "1.55.2",
     "webpack": "^5.88.2"
   },
   "devDependencies": {
-    "@tamagui/next-plugin": "latest",
+    "@tamagui/next-plugin": "1.55.2",
     "@types/node": "^18.16.19",
     "critters": "^0.0.19",
     "dotenv-cli": "^7.2.1",
