@@ -1,6 +1,6 @@
 {
   "name": "next-app",
-  "version": "2.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "pnpm with-env next dev",
@@ -14,7 +14,7 @@
     "@arcana/ui": "*",
     "@tamagui/config": "1.55.2",
     "@tamagui/next-theme": "1.55.2",
-    "@trpc/next": "^10.35.0",
+    "@trpc/next": "^10.38.0",
     "app": "*",
     "next": "13.4.12",
     "raf": "^3.4.1",

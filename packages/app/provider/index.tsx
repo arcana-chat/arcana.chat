@@ -21,11 +21,13 @@ export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'conf
       defaultTheme={scheme === 'dark' ? 'dark' : 'light'}
       {...rest}
     >
-      <ToastProvider swipeDirection="horizontal" duration={6000} native={['mobile']}>
-        <TRPCProvider>{children}</TRPCProvider>
-        <CustomToast />
-        <ToastViewport />
-      </ToastProvider>
+      <SafeAreaProvider>
+        <ToastProvider swipeDirection="horizontal" duration={6000} native={['mobile']}>
+          <TRPCProvider>{children}</TRPCProvider>
+          <CustomToast />
+          <ToastViewport />
+        </ToastProvider>
+      </SafeAreaProvider>
     </TamaguiProvider>
   );
 }
