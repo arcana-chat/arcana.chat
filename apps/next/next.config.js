@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const { withTamagui } = require('@tamagui/next-plugin');
 const { resolve, join } = require('path');
+const withPWA = require('@ducanh2912/next-pwa').default({
+  dest: 'public',
+  disable: process.env.NODE_ENV === 'development',
+});
 
 const boolVals = {
   true: true,
@@ -10,10 +14,14 @@ const boolVals = {
 const disableExtraction =
   boolVals[process.env.DISABLE_EXTRACTION] ?? process.env.NODE_ENV === 'development';
 
+const disableBrowserLogs =
+  boolVals[process.env.DISABLE_BROWSER_LOGS] ?? process.env.NODE_ENV === 'production';
+
 // Enabling causes FOUC on page refreshes
 const optimizeCss = false; // boolVals[process.env.OPTIMIZE_CSS] ?? process.env.NODE_ENV === 'production'
 
 const plugins = [
+  withPWA,
   withTamagui({
     config: './tamagui.config.ts',
     components: ['tamagui', '@arcana/ui'],
@@ -76,13 +84,14 @@ module.exports = function () {
        - Solito doesn't support app dir at the moment - You'll have to remove Solito.
        - The `/app` in this starter has the same routes as the `/pages` directory. You should probably remove `/pages` after enabling this.
       */
-      appDir: true,
+      appDir: false,
       optimizeCss,
       forceSwcTransforms: true,
       scrollRestoration: true,
       legacyBrowsers: false,
-      serverActions: true,
-      serverComponentsExternalPackages: ['@trpc/server'],
+    },
+    compiler: {
+      removeConsole: disableBrowserLogs,
     },
   };
 

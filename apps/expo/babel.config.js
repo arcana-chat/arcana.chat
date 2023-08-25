@@ -1,5 +1,5 @@
 module.exports = function (api) {
-  api.cache(true)
+  api.cache(true);
   return {
     presets: [['babel-preset-expo', { jsxRuntime: 'automatic' }]],
     plugins: [
@@ -9,7 +9,11 @@ module.exports = function (api) {
         {
           moduleName: '@env',
           path: '../../.env',
-          allowlist: ['NEXT_PUBLIC_SUPABASE_URL', 'NEXT_PUBLIC_SUPABASE_PUBLIC_KEY'],
+          allowlist: [
+            'NEXT_PUBLIC_SUPABASE_URL',
+            'NEXT_PUBLIC_SUPABASE_ANON_KEY',
+            'NEXT_PUBLIC_SUPABASE_PUBLIC_KEY',
+          ],
           safe: false,
           allowUndefined: true,
         },
@@ -48,5 +52,5 @@ module.exports = function (api) {
       ],
       'jotai/babel/plugin-react-refresh',
     ],
-  }
-}
+  };
+};
