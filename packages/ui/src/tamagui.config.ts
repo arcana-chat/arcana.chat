@@ -20,7 +20,7 @@ const bodyFont = createInterFont(
 );
 
 export const config: TamaguiInternalConfig = createTamagui({
-  defaultFont: 'body',
+  defaultFont: 'heading',
   animations,
   shouldAddPrefersColorThemes: true,
   themeClassNameOnRoot: true,
