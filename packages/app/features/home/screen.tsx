@@ -19,22 +19,22 @@ import {
 import { ChevronDown } from '@tamagui/lucide-icons';
 import React, { useEffect, useState } from 'react';
 import { useLink } from 'solito/navigation';
-import { isUserSignedIn, signOut } from 'app/utils/supabase';
+// import { isUserSignedIn, signOut } from 'app/utils/supabase';
 import Constants from 'expo-constants';
 import { useSheetOpen } from '@arcana/ui/src/atoms/sheet';
 import { SolitoImage } from 'solito/image';
 
 export function HomeScreen() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  // const [isSignedIn, setIsSignedIn] = useState(false);
 
-  useEffect(() => {
-    const fetchSignedInStatus = async () => {
-      const signedInStatus = await isUserSignedIn();
-      setIsSignedIn(signedInStatus);
-    };
+  // useEffect(() => {
+  //   const fetchSignedInStatus = async () => {
+  //     const signedInStatus = await isUserSignedIn();
+  //     setIsSignedIn(signedInStatus);
+  //   };
 
-    fetchSignedInStatus();
-  }, []);
+  //   fetchSignedInStatus();
+  // }, []);
 
   const signInLink = useLink({
     href: '/sign-in',
@@ -76,6 +76,14 @@ export function HomeScreen() {
           </H1>
         </Stack>
       </XStack>
+
+      <Button {...signInLink} space="$2">
+        Sign In
+      </Button>
+
+      <Button {...signUpLink} space="$2">
+        Sign In
+      </Button>
     </ScrollView>
   );
 }

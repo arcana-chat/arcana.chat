@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "turbo dev --parallel",
-    "api": "NO_D1_WARNING=true && turbo run dev --filter @arcana/api",
     "native": "turbo run dev --filter expo-app",
     "web": "turbo run dev --filter next-app",
+    "api": "cross-env NO_D1_WARNING=true turbo run dev --filter @arcana/api",
     "build": "turbo run build --filter @arcana/ui",
     "generate": "pnpm --filter=@arcana/api generate",
     "migrate:local": "pnpm --filter=@arcana/api migrate:local",

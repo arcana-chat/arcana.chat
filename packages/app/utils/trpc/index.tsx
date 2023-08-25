@@ -4,7 +4,7 @@ import type { AppRouter } from '@arcana/api/src/router';
 /**
  * A wrapper for your app that provides the TRPC context.
  */
-import { FC, ReactNode, useState } from 'react';
+import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import { supabase } from '../supabase/auth';
@@ -14,13 +14,15 @@ import { supabase } from '../supabase/auth';
  */
 export const trpc = createTRPCReact<AppRouter>();
 
-const getBaseUrl = () => process.env.NEXT_PUBLIC_API_URL;
+const getBaseUrl = () => {
+  return process.env.NEXT_PUBLIC_API_URL;
+};
 
-export const TRPCProvider: FC<{
-  children: ReactNode;
+export const TRPCProvider: React.FC<{
+  children: React.ReactNode;
 }> = ({ children }) => {
-  const [queryClient] = useState(() => new QueryClient());
-  const [trpcClient] = useState(() =>
+  const [queryClient] = React.useState(() => new QueryClient());
+  const [trpcClient] = React.useState(() =>
     trpc.createClient({
       links: [
         httpBatchLink({

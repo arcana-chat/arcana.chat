@@ -28,11 +28,16 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230821.0",
+    "@deepkit/core": "1.0.1-alpha.97",
+    "@deepkit/type": "1.0.1-alpha.97",
     "better-sqlite3": "^8.5.2",
     "dotenv-cli": "^7.3.0",
     "drizzle-kit": "^0.19.13",
     "eslint": "^8.47.0",
+    "fp-ts": "^2.16.1",
+    "ow": "^1.1.1",
     "typescript": "^5.1.6",
-    "wrangler": "^3.5.1"
+    "wrangler": "^3.5.1",
+    "yup": "^1.2.0"
   }
 }

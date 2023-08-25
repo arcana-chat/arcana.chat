@@ -8,7 +8,7 @@ import { config as configBase } from '@tamagui/config';
 import { NextThemeProvider, useRootTheme } from '@tamagui/next-theme';
 import { Provider, initialWindowMetrics } from 'app/provider';
 import { useServerInsertedHTML } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SolitoImageProvider } from 'solito/image';
