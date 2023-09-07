@@ -124,5 +124,8 @@ buck-out/
 web-build/
 dist/
 
+ios/
+android/
+
 expo-env.d.ts
 # @end expo-cli
