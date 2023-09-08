@@ -2,6 +2,7 @@ name = "arcana-api"
 compatibility_date = "2023-01-01"
 send_metrics = false
 account_id = "2ddea40d0f31f068bc3ec24c98a5f2b1"
+env_path = ".dev.vars"
 
 [[ d1_databases ]]
 binding = "DB"

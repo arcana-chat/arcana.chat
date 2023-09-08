@@ -8,6 +8,7 @@ type Bindings = {
   DB: D1Database;
   JWT_VERIFICATION_KEY: string;
   APP_URL: string;
+  OPENAI_API_KEY: string;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
@@ -28,7 +29,14 @@ app.use('/trpc/*', async (c, next) => {
   return await trpcServer({
     router: appRouter,
     createContext: async (opts) => {
-      return await createContext(c.env.DB, c.env.JWT_VERIFICATION_KEY, opts);
+      return await createContext(
+        {
+          d1: c.env.DB,
+          verificationKey: c.env.JWT_VERIFICATION_KEY,
+          openaiKey: c.env.OPENAI_API_KEY,
+        },
+        opts
+      );
     },
   })(c, next);
 });

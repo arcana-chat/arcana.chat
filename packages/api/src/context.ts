@@ -1,6 +1,7 @@
 import { type inferAsyncReturnType } from '@trpc/server';
 import { type FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 import { DrizzleD1Database } from 'drizzle-orm/d1';
+import Configuration, { OpenAI } from 'openai';
 import { createDb } from './db/client';
 import jwt from '@tsndr/cloudflare-worker-jwt';
 
@@ -10,27 +11,37 @@ interface User {
 
 interface ApiContextProps {
   user: User | null;
+  openai: Configuration;
   db: DrizzleD1Database;
 }
 
+interface CtxProps {
+  d1: D1Database;
+  verificationKey: string;
+  openaiKey: string;
+}
+
 export const createContext = async (
-  d1: D1Database,
-  JWT_VERIFICATION_KEY: string,
+  { d1, verificationKey, openaiKey }: CtxProps,
   opts: FetchCreateContextFnOptions
 ): Promise<ApiContextProps> => {
   const db = createDb(d1);
+
+  const openai = new OpenAI({
+    apiKey: openaiKey,
+  });
 
   async function getUser() {
     const sessionToken = opts.req.headers.get('authorization')?.split(' ')[1];
 
     if (sessionToken) {
-      if (!JWT_VERIFICATION_KEY) {
+      if (!verificationKey) {
         console.error('JWT_VERIFICATION_KEY is not set');
         return null;
       }
 
       try {
-        const authorized = await jwt.verify(sessionToken, JWT_VERIFICATION_KEY, {
+        const authorized = await jwt.verify(sessionToken, verificationKey, {
           algorithm: 'HS256',
         });
         if (!authorized) {
@@ -63,7 +74,7 @@ export const createContext = async (
 
   const user = await getUser();
 
-  return { user, db };
+  return { user, db, openai };
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;

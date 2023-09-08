@@ -1,13 +1,8 @@
 import { z } from 'zod';
-import Configuration, { OpenAI } from 'openai';
 import { TRPCError } from '@trpc/server';
 
 import { router, protectedProcedure, publicProcedure } from '../trpc';
 import { ChatCompletionMessage } from 'openai/resources/chat';
-
-const openai = new OpenAI({
-  apiKey: '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', // process.env.OPENAI_API_KEY,
-});
 
 type Message = {
   role: ChatCompletionMessage['role'];
@@ -33,7 +28,7 @@ const messages: Message[] = [prompt];
 export const aiRouter = router({
   generateText: publicProcedure
     .input(z.object({ prompt: z.string() }))
-    .mutation(async ({ input }) => {
+    .mutation(async ({ ctx, input }) => {
       const { prompt } = input;
 
       messages.push({
@@ -42,7 +37,7 @@ export const aiRouter = router({
       });
 
       try {
-        const completion = await openai.chat.completions.create({
+        const completion = await ctx.openai.chat.completions.create({
           model: 'gpt-3.5-turbo',
           messages,
         });
