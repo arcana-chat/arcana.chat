@@ -89,7 +89,7 @@ export const ChatScreen = () => {
       <Stack flex={1}>
         {messages.map((message, index) => (
           <View key={`${index}`}>
-            <Paragraph>{message.message}</Paragraph>
+            <Paragraph>{message.content}</Paragraph>
           </View>
         ))}
 
