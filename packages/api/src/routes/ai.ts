@@ -6,7 +6,7 @@ import { router, protectedProcedure, publicProcedure } from '../trpc';
 import { ChatCompletionMessage } from 'openai/resources/chat';
 
 const openai = new OpenAI({
-  apiKey: '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', // process.env.OPENAI_API_KEY,
+  apiKey: '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', // process.env.OPENAI_API_KEY,
 });
 
 type Message = {
