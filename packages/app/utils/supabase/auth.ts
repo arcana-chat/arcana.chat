@@ -1,6 +1,7 @@
 import type { SignInWithOAuthCredentials, User, UserResponse } from '@supabase/supabase-js';
 import { Linking } from 'react-native';
 import { supabase } from './init';
+import { getToken, saveToken } from './cache';
 import { useEffect } from 'react';
 import { useSupabaseUser, useUserLoading } from '@arcana/ui/src/atoms/auth';
 
@@ -25,6 +26,29 @@ const signInWithOAuth = async (credentials: SignInWithOAuthCredentials) => {
   }
 
   return { data, error };
+};
+
+const isUserSignedIn = async () => {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (session === null || session.user === null) {
+    const refresh_token = await getToken('refresh_token');
+
+    if (refresh_token && refresh_token !== '') {
+      const { data, error } = await supabase.auth.refreshSession({ refresh_token });
+
+      if (error) {
+        console.error('Error refreshing session:', error);
+        return false;
+      }
+
+      return data.session !== null && data.user !== null;
+    }
+  }
+
+  return session !== null && session.user !== null;
 };
 
 const signUp = async (email, password) => {
@@ -101,6 +125,7 @@ export {
   supabase,
   signIn,
   signInWithOAuth,
+  isUserSignedIn,
   sendPasswordResetEmail,
   updatePassword,
   signUp,

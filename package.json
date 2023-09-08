@@ -37,7 +37,7 @@
     "node-gyp": "^9.4.0",
     "prettier": "^3.0.2",
     "react-native-url-polyfill": "^2.0.0",
-    "turbo": "^1.10.12",
+    "turbo": "^1.10.13",
     "typescript": "^5.1.6",
     "workerd": "1.20230807.0"
   },

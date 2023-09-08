@@ -1,4 +1,4 @@
-import { createTamagui, type TamaguiInternalConfig } from 'tamagui';
+import { createTamagui, type TamaguiInternalConfig } from '@tamagui/core';
 import { createInterFont } from '@tamagui/font-inter';
 import { shorthands } from '@tamagui/shorthands';
 import { themes, tokens } from '@tamagui/themes';
