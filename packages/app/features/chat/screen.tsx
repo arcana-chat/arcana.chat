@@ -3,6 +3,7 @@ import { GiftedChat } from 'react-native-gifted-chat';
 
 import { H1, Stack, Paragraph, View, useWindowDimensions, Input } from '@arcana/ui';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { trpc } from 'app/utils/trpc';
 
 type Message = {
   type: 'user' | 'bot' | 'system';
@@ -30,19 +31,57 @@ const useChatQuery = () => {
 };
 
 export const ChatScreen = () => {
-  const chatState = useChatQuery();
-
+  const [prompt, setPrompt] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
 
-  const onSend = useCallback(async (message: string) => {
-    chatState.mutate({ message, type: 'user' });
-  }, []);
+  const ai = trpc.ai.generateText.useMutation({
+    onSuccess: (data) => {
+      setMessages([
+        ...messages,
+        {
+          content: data.generatedText,
+          author: 'AI',
+        },
+      ]);
+    },
 
-  useEffect(() => {
-    if (chatState.data?.message) {
-      setMessages((prev) => [...prev, chatState.data]);
-    }
-  }, [chatState.data]);
+    onError: (error) => {
+      setMessages([
+        ...messages,
+        {
+          content: error.message ?? 'An error occurred',
+          author: 'AI',
+          isError: true,
+        },
+      ]);
+    },
+
+    // onSettled: () => {
+    //   setWaiting(false);
+    //   scrollToBottom();
+    // },
+  });
+
+  const handleUpdate = (prompt: string) => {
+    // setWaiting(true);
+
+    setMessages([
+      ...messages,
+      {
+        content: prompt.replace(/\n/g, '\n\n'),
+        author: 'User',
+      },
+    ]);
+
+    // scrollToBottom();
+
+    ai.mutate({ prompt });
+  };
+
+  const handleReset = () => {
+    setMessages([]);
+    // resetMutation.mutate();
+  };
 
   return (
     <Stack alignItems="center" justifyContent="center" flexGrow={1}>
@@ -56,7 +95,12 @@ export const ChatScreen = () => {
 
         <Input
           placeholder="Type a message..."
-          onSubmitEditing={(e) => onSend(e.nativeEvent.text)}
+          onChange={(e) => setPrompt(e.nativeEvent.text)}
+          onKeyPress={(e) => {
+            if (e.nativeEvent.key === 'Enter') {
+              handleUpdate(prompt);
+            }
+          }}
         />
       </Stack>
     </Stack>

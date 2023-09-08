@@ -24,6 +24,7 @@
     "drizzle-orm": "^0.28.2",
     "drizzle-valibot": "^0.1.1",
     "hono": "^3.5.0",
+    "openai": "^4.5.0",
     "valibot": "^0.13.1"
   },
   "devDependencies": {
