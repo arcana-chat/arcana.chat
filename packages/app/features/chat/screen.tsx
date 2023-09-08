@@ -38,8 +38,6 @@ export const ChatScreen = () => {
     chatState.mutate({ message, type: 'user' });
   }, []);
 
-  console.log(chatState.data);
-
   useEffect(() => {
     if (chatState.data?.message) {
       setMessages((prev) => [...prev, chatState.data]);
