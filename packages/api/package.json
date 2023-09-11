@@ -19,7 +19,7 @@
   "dependencies": {
     "@decs/typeschema": "^0.10.0",
     "@hono/trpc-server": "^0.1.0",
-    "@trpc/server": "^10.38.0",
+    "@trpc/server": "^10.38.1",
     "@tsndr/cloudflare-worker-jwt": "^2.2.1",
     "drizzle-orm": "^0.28.2",
     "drizzle-valibot": "^0.1.1",
@@ -37,8 +37,8 @@
     "eslint": "^8.47.0",
     "fp-ts": "^2.16.1",
     "ow": "^1.1.1",
-    "typescript": "^5.1.6",
-    "wrangler": "^3.5.1",
+    "typescript": "^5.2.2",
+    "wrangler": "^3.7.0",
     "yup": "^1.2.0"
   }
 }

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { object, parse, string } from 'valibot';
 import { TRPCError } from '@trpc/server';
 
 import { router, protectedProcedure, publicProcedure } from '../trpc';
@@ -27,7 +27,7 @@ const messages: Message[] = [prompt];
 
 export const aiRouter = router({
   generateText: publicProcedure
-    .input(z.object({ prompt: z.string() }))
+    .input((raw) => parse(object({ prompt: string() }), raw))
     .mutation(async ({ ctx, input }) => {
       const { prompt } = input;
 
