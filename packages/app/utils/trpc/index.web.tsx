@@ -1,7 +1,8 @@
 import { createTRPCNext } from '@trpc/next';
-import { httpBatchLink, loggerLink } from '@trpc/client';
+import { httpBatchLink, loggerLink, wsLink } from '@trpc/client';
 import { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 import type { AppRouter } from '@arcana/api/src/router';
+import { wsClient } from '../ws';
 import { supabase } from '../supabase';
 
 const getBaseUrl = () => {
@@ -12,6 +13,9 @@ export const trpc = createTRPCNext<AppRouter>({
   config() {
     return {
       links: [
+        wsLink({
+          client: wsClient,
+        }),
         loggerLink({
           enabled: (opts) =>
             process.env.NODE_ENV === 'development' ||

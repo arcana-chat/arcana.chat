@@ -4,35 +4,43 @@ import { DrizzleD1Database } from 'drizzle-orm/d1';
 import Configuration, { OpenAI } from 'openai';
 import { createDb } from './db/client';
 import jwt from '@tsndr/cloudflare-worker-jwt';
-
-interface User {
-  id: string;
-}
-
-interface ApiContextProps {
-  user: User | null;
-  openai: Configuration;
-  db: DrizzleD1Database;
-}
+import { NodeHTTPCreateContextFnOptions } from '@trpc/server/dist/adapters/node-http';
+import { IncomingMessage } from 'http';
+import ws from 'ws';
+import { createClient } from '@supabase/supabase-js';
 
 interface CtxProps {
   d1: D1Database;
   verificationKey: string;
   openaiKey: string;
+  supabaseKey: string;
+  supabaseUrl: string;
 }
 
 export const createContext = async (
-  { d1, verificationKey, openaiKey }: CtxProps,
-  opts: FetchCreateContextFnOptions
-): Promise<ApiContextProps> => {
+  { d1, verificationKey, openaiKey, supabaseKey, supabaseUrl }: CtxProps,
+  opts: FetchCreateContextFnOptions | NodeHTTPCreateContextFnOptions<IncomingMessage, ws>
+) => {
   const db = createDb(d1);
 
   const openai = new OpenAI({
     apiKey: openaiKey,
   });
 
+  const supabase = createClient(supabaseUrl, supabaseKey, {
+    auth: {
+      autoRefreshToken: true,
+      persistSession: true,
+      detectSessionInUrl: true,
+      flowType: 'pkce',
+    },
+  });
+
   async function getUser() {
-    const sessionToken = opts.req.headers.get('authorization')?.split(' ')[1];
+    const sessionToken =
+      (typeof opts.req.headers.get === 'function' &&
+        opts.req.headers.get?.('authorization')?.split(' ')[1]) ??
+      null;
 
     if (sessionToken) {
       if (!verificationKey) {
@@ -74,7 +82,7 @@ export const createContext = async (
 
   const user = await getUser();
 
-  return { user, db, openai };
+  return { user, db, openai, supabase };
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;

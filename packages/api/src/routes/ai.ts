@@ -1,15 +1,16 @@
-import { object, parse, string } from 'valibot';
 import { TRPCError } from '@trpc/server';
+import { ChatCompletionMessage } from 'openai/resources/chat';
+import { object, parse, string } from 'valibot';
+import { EventEmitter } from 'events';
 
 import { router, protectedProcedure, publicProcedure } from '../trpc';
-import { ChatCompletionMessage } from 'openai/resources/chat';
 
 type Message = {
   role: ChatCompletionMessage['role'];
   content: string;
 };
 
-const prompt: Message = {
+const initialPrompt: Message = {
   role: 'system',
   content: `
 You are a tarot reading bot that is in the middle of a conversation with a user. Here is the
@@ -23,12 +24,12 @@ Please take all of this information and continue to respond to the user in a con
   `,
 };
 
-const messages: Message[] = [prompt];
+const messages: Message[] = [initialPrompt];
 
 export const aiRouter = router({
   generateText: publicProcedure
     .input((raw) => parse(object({ prompt: string() }), raw))
-    .mutation(async ({ ctx, input }) => {
+    .subscription(async ({ ctx, input }) => {
       const { prompt } = input;
 
       messages.push({
@@ -36,6 +37,20 @@ export const aiRouter = router({
         content: prompt,
       });
 
+      // const user = await ctx.db. //.insert(User).values(input).run();
+
+      const subscription = ctx.supabase
+        .channel('tarot-session')
+        .on('broadcast', { event: 'test' }, (payload) => console.log(payload))
+        .subscribe();
+
+      // .from('messages')
+      // .on('INSERT', (payload) => {
+      //   // Emitting the new message to subscribers
+      //   emit.next(payload.new);
+      // })();
+
+      // Unsubscribe function to clean up when the client disconnects or stops subscribing
       try {
         const completion = await ctx.openai.chat.completions.create({
           model: 'gpt-3.5-turbo',
@@ -51,8 +66,8 @@ export const aiRouter = router({
           });
         }
 
-        return {
-          generatedText: generatedText ?? '<no text generated>',
+        return () => {
+          ctx.supabase.removeChannel(subscription);
         };
       } catch (error: unknown) {
         // if (axios.isAxiosError(error)) {
