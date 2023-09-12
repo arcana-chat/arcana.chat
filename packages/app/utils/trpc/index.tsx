@@ -6,9 +6,8 @@ import type { AppRouter } from '@arcana/api/src/router';
  */
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { httpBatchLink, wsLink } from '@trpc/client';
+import { httpBatchLink } from '@trpc/client';
 import { supabase } from '../supabase/auth';
-import { wsClient } from '../ws';
 
 /**
  * A set of typesafe hooks for consuming your API.
@@ -26,9 +25,6 @@ export const TRPCProvider: React.FC<{
   const [trpcClient] = React.useState(() =>
     trpc.createClient({
       links: [
-        wsLink({
-          client: wsClient,
-        }),
         httpBatchLink({
           async headers() {
             const { data } = await supabase.auth.getSession();

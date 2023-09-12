@@ -4,6 +4,7 @@ import { GiftedChat } from 'react-native-gifted-chat';
 import { H1, Stack, Paragraph, View, useWindowDimensions, Input } from '@arcana/ui';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { trpc } from 'app/utils/trpc';
+import { supabase } from 'app/utils/supabase';
 
 type Message = {
   type: 'user' | 'bot' | 'system';
@@ -34,15 +35,27 @@ export const ChatScreen = () => {
   const [prompt, setPrompt] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
 
+  useEffect(() => {
+    const subscription = supabase
+      .channel('tarot-session')
+      .on('broadcast', { event: 'test' }, (payload) => console.log(payload))
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(subscription);
+    };
+  }, []);
+
   const ai = trpc.ai.generateText.useMutation({
     onSuccess: (data) => {
-      setMessages([
-        ...messages,
-        {
-          content: data.generatedText,
-          author: 'AI',
-        },
-      ]);
+      console.log({ data });
+      // setMessages([
+      //   ...messages,
+      //   {
+      //     content: data.generatedText,
+      //     author: 'AI',
+      //   },
+      // ]);
     },
 
     onError: (error) => {

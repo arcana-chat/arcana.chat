@@ -29,46 +29,43 @@ const messages: Message[] = [initialPrompt];
 export const aiRouter = router({
   generateText: publicProcedure
     .input((raw) => parse(object({ prompt: string() }), raw))
-    .subscription(async ({ ctx, input }) => {
+    .mutation(async ({ ctx, input }) => {
       const { prompt } = input;
 
-      messages.push({
+      const inserted = await ctx.supabase.from('messages').insert({
         role: 'user',
         content: prompt,
       });
 
-      // const user = await ctx.db. //.insert(User).values(input).run();
-
-      const subscription = ctx.supabase
-        .channel('tarot-session')
-        .on('broadcast', { event: 'test' }, (payload) => console.log(payload))
-        .subscribe();
-
-      // .from('messages')
-      // .on('INSERT', (payload) => {
-      //   // Emitting the new message to subscribers
-      //   emit.next(payload.new);
-      // })();
-
+      // Subscribe to changes in the messages table
+      // const subscription = ctx.supabase
+      //   .from('messages')
+      //   .on('INSERT', (payload) => {
+      //     console.log('New message:', payload.new);
+      //   })
+      //   .subscribe();
+      // const subscription = ctx.supabase.channel('tarot-session');
+      console.log('what');
       // Unsubscribe function to clean up when the client disconnects or stops subscribing
       try {
+        console.log('Waiting for messages...', inserted);
         const completion = await ctx.openai.chat.completions.create({
           model: 'gpt-3.5-turbo',
           messages,
         });
+        console.log('Got messages!', completion);
 
-        const generatedText = completion.choices[0]?.message?.content;
+        return completion.choices[0]?.message?.content;
+        // console.log({ generatedText });
+        // if (generatedText) {
+        //   // Insert the AI's response to the database. This will trigger the subscription
+        //   await ctx.supabase.from('messages').insert({
+        //     role: completion.choices[0]?.message?.role,
+        //     content: generatedText,
+        //   });
+        // }
 
-        if (generatedText) {
-          messages.push({
-            role: completion.choices[0]?.message?.role,
-            content: generatedText,
-          });
-        }
-
-        return () => {
-          ctx.supabase.removeChannel(subscription);
-        };
+        // return inserted;
       } catch (error: unknown) {
         // if (axios.isAxiosError(error)) {
         //   throw new TRPCError({
@@ -82,6 +79,9 @@ export const aiRouter = router({
           code: 'INTERNAL_SERVER_ERROR',
           message: error instanceof Error ? error.message : 'Unknown error',
         });
+      } finally {
+        // Always clean up subscriptions when they're no longer needed
+        // ctx.supabase.removeChannel(subscription);
       }
     }),
 

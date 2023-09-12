@@ -1,7 +1,6 @@
 import { type inferAsyncReturnType } from '@trpc/server';
 import { type FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
-import { DrizzleD1Database } from 'drizzle-orm/d1';
-import Configuration, { OpenAI } from 'openai';
+import { OpenAI } from 'openai';
 import { createDb } from './db/client';
 import jwt from '@tsndr/cloudflare-worker-jwt';
 import { NodeHTTPCreateContextFnOptions } from '@trpc/server/dist/adapters/node-http';

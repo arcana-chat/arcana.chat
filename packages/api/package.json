@@ -5,8 +5,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:next": "cross-env NO_D1_WARNING=true wrangler dev src/index.ts",
-    "dev:ws": "cross-env PORT=3001 tsx watch src/ws.ts --tsconfig tsconfig.json",
+    "dev:wrangler": "cross-env NO_D1_WARNING=true wrangler dev src/index.ts",
     "generate": "drizzle-kit generate:sqlite --schema=./src/db/schema.ts --out=./migrations",
     "migrate": "cross-env NO_D1_WARNING=true wrangler d1 migrations apply production",
     "migrate:local": "cross-env NO_D1_WARNING=true wrangler d1 migrations apply production --local",
@@ -23,7 +22,7 @@
     "@hono/trpc-server": "^0.1.0",
     "@trpc/server": "^10.38.1",
     "@tsndr/cloudflare-worker-jwt": "^2.2.1",
-    "drizzle-orm": "^0.28.2",
+    "drizzle-orm": "^0.28.6",
     "drizzle-valibot": "^0.1.1",
     "hono": "^3.5.0",
     "openai": "^4.5.0",

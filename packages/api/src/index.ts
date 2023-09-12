@@ -33,8 +33,8 @@ app.use(
   async (c, next) =>
     await trpcServer({
       router: appRouter,
-      createContext: async (opts) => {
-        return await createContext(
+      createContext: async (opts) =>
+        await createContext(
           {
             d1: c.env.DB,
             verificationKey: c.env.JWT_VERIFICATION_KEY,
@@ -43,8 +43,7 @@ app.use(
             supabaseUrl: c.env.SUPABASE_URL,
           },
           opts
-        );
-      },
+        ),
     })(c, next)
 );
 
