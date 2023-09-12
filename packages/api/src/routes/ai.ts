@@ -4,6 +4,8 @@ import { object, parse, string } from 'valibot';
 import { EventEmitter } from 'events';
 
 import { router, protectedProcedure, publicProcedure } from '../trpc';
+import { ChatSessionTable, MessageTable } from '../db/schema';
+import { v4 as uuid } from 'uuid';
 
 type Message = {
   role: ChatCompletionMessage['role'];
@@ -32,60 +34,59 @@ export const aiRouter = router({
     .mutation(async ({ ctx, input }) => {
       const { prompt } = input;
 
-      const inserted = await ctx.supabase.from('messages').insert({
+      if (!prompt.trim()) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: 'The prompt cannot be empty.',
+        });
+      }
+
+      // First, create a new chat session or fetch an existing one (depends on your use-case)
+      // For this example, I'm assuming you're creating a new chat session every time.
+      const chatSession = await ctx.db
+        .insert(ChatSessionTable)
+        .values({
+          id: uuid(),
+          userId: ctx.user?.id ?? 'not logged in, but thats okay we are learning',
+        })
+        .returning({ id: ChatSessionTable.id });
+      console.log({ chatSession });
+      // Insert the user's message into the `Message` table
+      await ctx.db.insert(MessageTable).values({
+        id: uuid(),
+        sessionId: chatSession[0].id,
         role: 'user',
         content: prompt,
       });
+      // try {
+      //   const completion = await ctx.openai.chat.completions.create({
+      //     model: 'gpt-3.5-turbo',
+      //     messages: [insertedMessage], // Using the insertedMessage here
+      //   });
 
-      // Subscribe to changes in the messages table
-      // const subscription = ctx.supabase
-      //   .from('messages')
-      //   .on('INSERT', (payload) => {
-      //     console.log('New message:', payload.new);
-      //   })
-      //   .subscribe();
-      // const subscription = ctx.supabase.channel('tarot-session');
-      console.log('what');
-      // Unsubscribe function to clean up when the client disconnects or stops subscribing
-      try {
-        console.log('Waiting for messages...', inserted);
-        const completion = await ctx.openai.chat.completions.create({
-          model: 'gpt-3.5-turbo',
-          messages,
-        });
-        console.log('Got messages!', completion);
+      //   const generatedText = completion.choices[0]?.message?.content;
+      //   if (generatedText) {
+      //     // Insert the AI's response into the `Message` table
+      //     await ctx.db.insert('Message', {
+      //       sessionId: chatSession.id,
+      //       role: 'bot', // The role should be 'bot' for AI response
+      //       content: generatedText,
+      //     });
+      //   }
 
-        return completion.choices[0]?.message?.content;
-        // console.log({ generatedText });
-        // if (generatedText) {
-        //   // Insert the AI's response to the database. This will trigger the subscription
-        //   await ctx.supabase.from('messages').insert({
-        //     role: completion.choices[0]?.message?.role,
-        //     content: generatedText,
-        //   });
-        // }
-
-        // return inserted;
-      } catch (error: unknown) {
-        // if (axios.isAxiosError(error)) {
-        //   throw new TRPCError({
-        //     code: 'INTERNAL_SERVER_ERROR',
-        //     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-        //     message: error.response?.data?.error?.message,
-        //   });
-        // }
-
-        throw new TRPCError({
-          code: 'INTERNAL_SERVER_ERROR',
-          message: error instanceof Error ? error.message : 'Unknown error',
-        });
-      } finally {
-        // Always clean up subscriptions when they're no longer needed
-        // ctx.supabase.removeChannel(subscription);
-      }
+      //   return generatedText;
+      // } catch (error: unknown) {
+      //   throw new TRPCError({
+      //     code: 'INTERNAL_SERVER_ERROR',
+      //     message: error instanceof Error ? error.message : 'Unknown error',
+      //   });
+      // }
     }),
 
-  reset: publicProcedure.mutation(() => {
-    messages.length = 0;
+  reset: publicProcedure.mutation(async ({ ctx }) => {
+    // Depending on how you want to reset,
+    // For instance, if you want to clear all messages from the database
+    await ctx.db.delete('Message');
+    await ctx.db.delete('ChatSession');
   }),
 });
