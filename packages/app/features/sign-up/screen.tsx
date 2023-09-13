@@ -16,7 +16,7 @@ export const SignUpScreen = (): React.ReactNode => {
       return;
     }
 
-    push('/welcome');
+    push('/');
   };
 
   const handleEmailSignUpWithPress = async (emailAddress, password) => {
@@ -27,7 +27,7 @@ export const SignUpScreen = (): React.ReactNode => {
       return;
     }
 
-    push('/welcome');
+    push('/');
   };
 
   return (

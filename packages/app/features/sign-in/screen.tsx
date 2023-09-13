@@ -5,35 +5,35 @@ import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn';
 import { Provider, SignInWithOAuthCredentials } from '@supabase/supabase-js';
 import { signInWithOAuth } from 'app/utils/supabase/auth';
 
+const OAUTH_CREDENTIALS = {
+  // Verified providers
+  apple: { provider: 'apple' },
+  google: {
+    provider: 'google',
+    options: { queryParams: { access_type: 'offline', prompt: 'consent' } },
+  },
+  discord: { provider: 'discord' },
+  // Unverified providers
+  kakao: { provider: 'kakao' },
+  twitter: { provider: 'twitter' },
+  figma: { provider: 'figma' },
+  github: { provider: 'github' },
+  gitlab: { provider: 'gitlab' },
+  facebook: { provider: 'facebook' },
+  bitbucket: { provider: 'bitbucket' },
+  twitch: { provider: 'twitch' },
+  keycloak: { provider: 'keycloak' },
+  linkedin: { provider: 'linkedin' },
+  notion: { provider: 'notion' },
+  slack: { provider: 'slack' },
+  spotify: { provider: 'spotify' },
+  zoom: { provider: 'zoom' },
+  azure: { provider: 'azure' },
+  workos: { provider: 'workos' },
+} satisfies Record<Provider, SignInWithOAuthCredentials>;
+
 export const SignInScreen = (): React.ReactNode => {
   const { push } = useRouter();
-
-  const OAUTH_CREDENTIALS: Record<Provider, SignInWithOAuthCredentials> = {
-    // Verified providers
-    apple: { provider: 'apple' },
-    google: {
-      provider: 'google',
-      options: { queryParams: { access_type: 'offline', prompt: 'consent' } },
-    },
-    discord: { provider: 'discord' },
-    // Unverified providers
-    kakao: { provider: 'kakao' },
-    twitter: { provider: 'twitter' },
-    figma: { provider: 'figma' },
-    github: { provider: 'github' },
-    gitlab: { provider: 'gitlab' },
-    facebook: { provider: 'facebook' },
-    bitbucket: { provider: 'bitbucket' },
-    twitch: { provider: 'twitch' },
-    keycloak: { provider: 'keycloak' },
-    linkedin: { provider: 'linkedin' },
-    notion: { provider: 'notion' },
-    slack: { provider: 'slack' },
-    spotify: { provider: 'spotify' },
-    zoom: { provider: 'zoom' },
-    azure: { provider: 'azure' },
-    workos: { provider: 'workos' },
-  };
 
   const handleOAuthSignInWithPress = async (provider: Provider) => {
     const { error } = await signInWithOAuth({ provider });
@@ -43,7 +43,7 @@ export const SignInScreen = (): React.ReactNode => {
       return;
     }
 
-    push('/welcome');
+    push('/');
   };
 
   const handleEmailSignInWithPress = async (emailAddress, password) => {
@@ -54,7 +54,7 @@ export const SignInScreen = (): React.ReactNode => {
       return;
     }
 
-    push('/welcome');
+    push('/');
   };
 
   return (

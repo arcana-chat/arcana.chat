@@ -4,8 +4,9 @@ import { supabase } from './init';
 import { getToken, saveToken } from './cache';
 import { useEffect } from 'react';
 import { useSupabaseUser, useUserLoading } from '@arcana/ui/src/atoms/auth';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
-const signIn = async (email, password) => {
+export const signIn = async (email, password) => {
   const {
     data: { user },
     error,
@@ -17,7 +18,7 @@ const signIn = async (email, password) => {
   return { user, error };
 };
 
-const signInWithOAuth = async (credentials: SignInWithOAuthCredentials) => {
+export const signInWithOAuth = async (credentials: SignInWithOAuthCredentials) => {
   const { data, error } = await supabase.auth.signInWithOAuth(credentials);
 
   if (data?.url) {
@@ -28,7 +29,8 @@ const signInWithOAuth = async (credentials: SignInWithOAuthCredentials) => {
   return { data, error };
 };
 
-const isUserSignedIn = async () => {
+// TODO make this a react query hook
+export const isUserSignedIn = async () => {
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -51,7 +53,14 @@ const isUserSignedIn = async () => {
   return session !== null && session.user !== null;
 };
 
-const signUp = async (email, password) => {
+export const useSignedInStatus = () =>
+  useQuery(['userSession'], isUserSignedIn, {
+    staleTime: 60 * 1000, // Data will be considered fresh for 1 minute
+    cacheTime: 5 * 60 * 1000, // 5 minutes cache time
+    retry: 1, // Retry once on failure
+  });
+
+export const signUp = async (email, password) => {
   const {
     data: { user },
     error,
@@ -63,18 +72,22 @@ const signUp = async (email, password) => {
   return { user, error };
 };
 
-const signOut = async () => {
+export const signOut = async () => {
   await supabase.auth.signOut();
 };
 
-const sendPasswordResetEmail = async (email) => {
+export const useSignOut = () => {
+  return useMutation(() => supabase.auth.signOut());
+};
+
+export const sendPasswordResetEmail = async (email) => {
   const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${process.env.NEXT_PUBLIC_APP_URL}/password-reset/update-password`,
   });
   return { data, error };
 };
 
-const updatePassword = async (newPassword) => {
+export const updatePassword = async (newPassword) => {
   const { data, error } = await supabase.auth.updateUser({
     password: newPassword,
   });
@@ -90,14 +103,14 @@ const getUser = async () => {
   return { user, error };
 };
 
-const deleteUser = async (userId) => {
+export const deleteUser = async (userId) => {
   const { data, error } = await supabase.auth.admin.deleteUser(userId);
 
   return { data, error };
 };
 
 // @link https://t4stack.com/hooks
-const useUser = () => {
+export const useUser = () => {
   const [user, setUser] = useSupabaseUser();
   const [loading, setLoading] = useUserLoading();
 
@@ -121,16 +134,4 @@ const useUser = () => {
   return { user, loading, setUser };
 };
 
-export {
-  supabase,
-  signIn,
-  signInWithOAuth,
-  isUserSignedIn,
-  sendPasswordResetEmail,
-  updatePassword,
-  signUp,
-  signOut,
-  getUser,
-  deleteUser,
-  useUser,
-};
+export { supabase };
