@@ -3,36 +3,21 @@ import { type FetchCreateContextFnOptions } from '@trpc/server/adapters/fetch';
 import { OpenAI } from 'openai';
 import { createDb } from './db/client';
 import jwt from '@tsndr/cloudflare-worker-jwt';
-import { NodeHTTPCreateContextFnOptions } from '@trpc/server/dist/adapters/node-http';
-import { IncomingMessage } from 'http';
-import ws from 'ws';
-import { createClient } from '@supabase/supabase-js';
 
-interface CtxProps {
+type CtxProps = {
   d1: D1Database;
   verificationKey: string;
   openaiKey: string;
-  supabaseKey: string;
-  supabaseUrl: string;
-}
+};
 
 export const createContext = async (
-  { d1, verificationKey, openaiKey, supabaseKey, supabaseUrl }: CtxProps,
-  opts: FetchCreateContextFnOptions | NodeHTTPCreateContextFnOptions<IncomingMessage, ws>
+  { d1, verificationKey, openaiKey }: CtxProps,
+  opts: FetchCreateContextFnOptions
 ) => {
   const db = createDb(d1);
 
   const openai = new OpenAI({
     apiKey: openaiKey,
-  });
-
-  const supabase = createClient(supabaseUrl, supabaseKey, {
-    auth: {
-      autoRefreshToken: true,
-      persistSession: true,
-      detectSessionInUrl: true,
-      flowType: 'pkce',
-    },
   });
 
   async function getUser() {
@@ -51,6 +36,7 @@ export const createContext = async (
         const authorized = await jwt.verify(sessionToken, verificationKey, {
           algorithm: 'HS256',
         });
+
         if (!authorized) {
           return null;
         }
@@ -60,14 +46,17 @@ export const createContext = async (
         // Check if token is expired
         const expirationTimestamp = decodedToken.payload.exp;
         const currentTimestamp = Math.floor(Date.now() / 1000);
+
         if (!expirationTimestamp || expirationTimestamp < currentTimestamp) {
           return null;
         }
 
         const userId = decodedToken?.payload?.sub;
+        const userEmail = decodedToken?.payload?.email;
 
         if (userId) {
           return {
+            email: userEmail,
             id: userId,
           };
         }
@@ -81,7 +70,7 @@ export const createContext = async (
 
   const user = await getUser();
 
-  return { user, db, openai, supabase };
+  return { user, db, openai };
 };
 
 export type Context = inferAsyncReturnType<typeof createContext>;

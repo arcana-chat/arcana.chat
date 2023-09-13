@@ -9,8 +9,6 @@ type Bindings = {
   JWT_VERIFICATION_KEY: string;
   APP_URL: string;
   OPENAI_API_KEY: string;
-  SUPABASE_ANON_KEY: string;
-  SUPABASE_URL: string;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
@@ -39,8 +37,6 @@ app.use(
             d1: c.env.DB,
             verificationKey: c.env.JWT_VERIFICATION_KEY,
             openaiKey: c.env.OPENAI_API_KEY,
-            supabaseKey: c.env.SUPABASE_ANON_KEY,
-            supabaseUrl: c.env.SUPABASE_URL,
           },
           opts
         ),
