@@ -4,8 +4,9 @@ import { object, parse, string } from 'valibot';
 import { EventEmitter } from 'events';
 
 import { router, protectedProcedure, publicProcedure } from '../trpc';
-import { ChatSessionTable, MessageTable } from '../db/schema';
+import { ChatSessionTable, MessageTable, UserTable } from '../db/schema';
 import { v4 as uuid } from 'uuid';
+import { createUser, getCurrentUser } from './user';
 
 type Message = {
   role: ChatCompletionMessage['role'];
@@ -29,7 +30,7 @@ Please take all of this information and continue to respond to the user in a con
 const messages: Message[] = [initialPrompt];
 
 export const aiRouter = router({
-  generateText: publicProcedure
+  generateText: protectedProcedure
     .input((raw) => parse(object({ prompt: string() }), raw))
     .mutation(async ({ ctx, input }) => {
       const { prompt } = input;
@@ -41,23 +42,39 @@ export const aiRouter = router({
         });
       }
 
-      // First, create a new chat session or fetch an existing one (depends on your use-case)
-      // For this example, I'm assuming you're creating a new chat session every time.
-      const chatSession = await ctx.db
-        .insert(ChatSessionTable)
-        .values({
-          id: uuid(),
-          userId: ctx.user?.id ?? 'not logged in, but thats okay we are learning',
-        })
-        .returning({ id: ChatSessionTable.id });
-      console.log({ chatSession });
+      try {
+        let currentUser = await getCurrentUser(ctx);
+        console.log('prev', currentUser?.id, ctx.user.id);
+        // This is bad don't do this -- just doing this for a test
+        if (!currentUser) {
+          await createUser(ctx, { ...ctx.user, email: 'test@test.com' });
+        }
+
+        currentUser = await getCurrentUser(ctx);
+
+        console.log(currentUser?.id);
+
+        // First, create a new chat session or fetch an existing one (depends on your use-case)
+        // For this example, I'm assuming you're creating a new chat session every time.
+        const chatSession = await ctx.db
+          .insert(ChatSessionTable)
+          .values({
+            id: uuid(),
+            userId: ctx.user.id,
+          })
+          .returning();
+
+        console.log(JSON.stringify(chatSession, null, 2));
+      } catch (error) {
+        console.log(error);
+      }
       // Insert the user's message into the `Message` table
-      await ctx.db.insert(MessageTable).values({
-        id: uuid(),
-        sessionId: chatSession[0].id,
-        role: 'user',
-        content: prompt,
-      });
+      // await ctx.db.insert(MessageTable).values({
+      //   id: uuid(),
+      //   sessionId: chatSession[0].id,
+      //   role: 'user',
+      //   content: prompt,
+      // });
       // try {
       //   const completion = await ctx.openai.chat.completions.create({
       //     model: 'gpt-3.5-turbo',

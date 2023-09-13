@@ -22,6 +22,27 @@
       "when": 1694496956899,
       "tag": "0002_old_wrecker",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1694564477636,
+      "tag": "0003_shocking_venom",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1694564779087,
+      "tag": "0004_nasty_thor",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1694564943168,
+      "tag": "0005_brown_master_mold",
+      "breakpoints": true
     }
   ]
 }

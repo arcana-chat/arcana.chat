@@ -9,6 +9,7 @@ binding = "DB"
 database_name = "production"
 database_id = "7878f59c-5a90-4351-811c-1ae83f6b8d51"
 migrations_dir = "migrations"
+preview_database_id = "DB"
 
 # The necessary secrets are:
 # - APP_URL - for preventing CORS errors

@@ -11,14 +11,13 @@
     "migrate:local": "cross-env NO_D1_WARNING=true wrangler d1 migrations apply production --local",
     "seed": "cross-env NO_D1_WARNING=true wrangler d1 execute production --file=./seed/seed.sql",
     "seed:local": "cross-env NO_D1_WARNING=true wrangler d1 execute production --local --file=./seed/seed.sql",
-    "studio": "drizzle-kit studio",
+    "dev:studio": "drizzle-kit studio",
     "deploy": "cross-env NO_D1_WARNING=true wrangler deploy --minify src/index.ts",
     "postinstall": "pnpm generate",
     "with-env": "dotenv -e ../../.env.local --",
     "clean": "rm -rf .turbo node_modules"
   },
   "dependencies": {
-    "@decs/typeschema": "^0.10.0",
     "@hono/trpc-server": "^0.1.0",
     "@trpc/server": "^10.38.1",
     "@tsndr/cloudflare-worker-jwt": "^2.2.1",
@@ -27,8 +26,7 @@
     "hono": "^3.5.0",
     "openai": "^4.5.0",
     "uuid": "^9.0.1",
-    "valibot": "^0.13.1",
-    "ws": "^8.14.1"
+    "valibot": "^0.13.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230821.0",
@@ -44,7 +42,6 @@
     "ow": "^1.1.1",
     "tsx": "^3.12.8",
     "typescript": "^5.2.2",
-    "wrangler": "^3.7.0",
-    "yup": "^1.2.0"
+    "wrangler": "^3.7.0"
   }
 }
