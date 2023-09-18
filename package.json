@@ -21,7 +21,7 @@
     "ui:watch": "pnpm --filter ui tamagui-build -- --watch",
     "dist:clean": "git clean -xdf dist",
     "pnpm:clean": "find apps packages -depth -type d -name \"node_modules\" -exec git clean -xdf '{}' \\;",
-    "pnpm:nuke": "pnpm pnpm:clean; rm -rf pnpm-lock.yaml;",
+    "pnpm:nuke": "pnpm pnpm:clean; rm -rf node_modules pnpm-lock.yaml;",
     "clean:workspaces": "turbo clean",
     "clean": "pnpm dist:clean; pnpm pnpm:clean",
     "nuke": "pnpm dist:clean; pnpm pnpm:nuke"
