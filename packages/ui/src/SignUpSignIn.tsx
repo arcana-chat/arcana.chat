@@ -1,6 +1,8 @@
 import { useState } from 'react'
-import { Image, YStack, Paragraph, XStack, Button, Input, Stack } from 'tamagui'
+
 import { Link } from 'solito/link'
+import { Button, Image, Input, Paragraph, Stack, XStack, YStack } from 'tamagui'
+
 import { type Provider } from '@supabase/supabase-js'
 
 interface Props {

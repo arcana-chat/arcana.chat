@@ -1,8 +1,8 @@
-import { createTamagui, type TamaguiInternalConfig } from '@tamagui/core';
+import { type TamaguiInternalConfig, createTamagui } from '@tamagui/core';
 import { createInterFont } from '@tamagui/font-inter';
+import { createMedia } from '@tamagui/react-native-media-driver';
 import { shorthands } from '@tamagui/shorthands';
 import { themes, tokens } from '@tamagui/themes';
-import { createMedia } from '@tamagui/react-native-media-driver';
 
 import { animations } from './animations';
 import { libreCalsonFont } from './fonts';

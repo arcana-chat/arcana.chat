@@ -1,7 +1,17 @@
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+
+import Constants from 'expo-constants';
+import { SolitoImage } from 'solito/image';
+import { useLink } from 'solito/navigation';
+
+import { ChevronDown } from '@tamagui/lucide-icons';
+
 import {
   Anchor,
+  BlurView,
   Button,
   H1,
+  H2,
   H3,
   Image,
   Paragraph,
@@ -11,18 +21,12 @@ import {
   Stack,
   XStack,
   YStack,
-  BlurView,
   useToastController,
-  H2,
 } from '@arcana/ui';
-import { ChevronDown } from '@tamagui/lucide-icons';
-import React, { ReactNode, useCallback, useEffect, useState } from 'react';
-import { useLink } from 'solito/navigation';
-import { useCurrentUser } from 'app/utils/supabase/hooks/useCurrentUser';
-import Constants from 'expo-constants';
+
 import { useSheetOpen } from 'app/atoms';
-import { SolitoImage } from 'solito/image';
 import { supabase } from 'app/utils/supabase/client';
+import { useCurrentUser } from 'app/utils/supabase/hooks/useCurrentUser';
 import { trpc } from 'app/utils/trpc';
 
 export function HomeScreen() {

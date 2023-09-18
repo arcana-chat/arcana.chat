@@ -1,9 +1,11 @@
-import { CustomToast, TamaguiProvider, TamaguiProviderProps, ToastProvider } from '@arcana/ui';
 import { useColorScheme } from 'react-native';
 import { Metrics, SafeAreaProvider } from 'react-native-safe-area-context';
+
+import { CustomToast, TamaguiProvider, TamaguiProviderProps, ToastProvider } from '@arcana/ui';
+
 import { ToastViewport } from './toast/ToastViewport';
-import config from '../tamagui.config';
 import { TRPCProvider } from './trpc';
+import config from '../tamagui.config';
 
 export const initialWindowMetrics: Metrics | null = {
   frame: { x: 0, y: 0, width: 0, height: 0 },

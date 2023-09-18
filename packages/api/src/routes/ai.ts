@@ -1,12 +1,14 @@
-import { TRPCError } from '@trpc/server';
-import { ChatCompletionMessage } from 'openai/resources/chat';
-import { object, parse, string } from 'valibot';
 import { EventEmitter } from 'events';
 
-import { router, protectedProcedure, publicProcedure } from '../trpc';
-import { ChatSessionTable, MessageTable, UserTable } from '../db/schema';
+import { ChatCompletionMessage } from 'openai/resources/chat';
 import { v4 as uuid } from 'uuid';
+import { object, parse, string } from 'valibot';
+
+import { TRPCError } from '@trpc/server';
+
 import { createUser, getCurrentUser } from './user';
+import { ChatSessionTable, MessageTable, UserTable } from '../db/schema';
+import { protectedProcedure, publicProcedure, router } from '../trpc';
 
 type Message = {
   role: ChatCompletionMessage['role'];

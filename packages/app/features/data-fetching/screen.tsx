@@ -1,5 +1,7 @@
-import { H1, H2, Paragraph, YStack } from '@arcana/ui'
 import React from 'react'
+
+import { H1, H2, Paragraph, YStack } from '@arcana/ui'
+
 import { trpc } from 'app/utils/trpc'
 
 export function DataFetchingScreen() {

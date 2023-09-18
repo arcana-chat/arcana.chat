@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 
-import { styled, TamaguiElement, Stack, StackProps } from '@tamagui/core';
+import { Stack, StackProps, TamaguiElement, styled } from '@tamagui/core';
 
 // https://github.com/expo/expo/blob/main/packages/expo-blur/src/BlurView.web.tsx
 

@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { YStack, Paragraph, Button, Input } from 'tamagui'
+
+import { Button, Input, Paragraph, YStack } from 'tamagui'
 
 interface Props {
   type: 'email' | 'password'

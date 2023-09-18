@@ -1,8 +1,12 @@
-import { createTRPCNext } from '@trpc/next';
-import { httpBatchLink, loggerLink } from '@trpc/client';
-import { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
-import type { AppRouter } from '@arcana/api/src/router';
 import superjson from 'superjson';
+
+import { httpBatchLink, loggerLink } from '@trpc/client';
+import { createTRPCNext } from '@trpc/next';
+import { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
+
+import type { AppRouter } from '@arcana/api/src/router';
+
+
 import { getToken } from '../supabase/cookies';
 
 const getBaseUrl = () => {

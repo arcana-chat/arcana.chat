@@ -1,8 +1,10 @@
 import { Hono } from 'hono';
-import { appRouter } from './router';
 import { cors } from 'hono/cors';
-import { createContext } from './context';
+
 import { trpcServer } from '@hono/trpc-server';
+
+import { createContext } from './context';
+import { appRouter } from './router';
 
 type Bindings = {
   DB: D1Database;

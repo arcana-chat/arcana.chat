@@ -1,5 +1,6 @@
-import { GetProps, styled } from '@tamagui/core';
 import { BlurView as ExpoBlurView, BlurViewProps as ExpoBlurViewProps } from 'expo-blur';
+
+import { GetProps, styled } from '@tamagui/core';
 
 const BLUR_VIEW_NAME = 'BlurView';
 

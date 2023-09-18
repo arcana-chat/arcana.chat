@@ -1,8 +1,11 @@
-import { YStack } from '@arcana/ui';
 import { useRouter } from 'solito/navigation';
-import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn';
-import { signUp } from 'app/utils/supabase';
+
 import { Provider } from '@supabase/supabase-js';
+
+import { YStack } from '@arcana/ui';
+import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn';
+
+import { signUp } from 'app/utils/supabase';
 import { signInWithOAuth } from 'app/utils/supabase/auth';
 
 export const SignUpScreen = (): React.ReactNode => {

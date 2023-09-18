@@ -1,5 +1,6 @@
-import { ParamsScreen } from 'app/features/params/screen'
 import { Stack } from 'expo-router'
+
+import { ParamsScreen } from 'app/features/params/screen'
 
 export default function Screen() {
   return (

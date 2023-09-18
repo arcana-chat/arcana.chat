@@ -1,6 +1,7 @@
-import { FlashList } from '@shopify/flash-list'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useColorScheme } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+
+import { FlashList } from '@shopify/flash-list'
 
 interface Props {
   data: any[]

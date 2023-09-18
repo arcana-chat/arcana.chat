@@ -1,8 +1,11 @@
-import { YStack } from '@arcana/ui';
-import { signIn } from 'app/utils/supabase';
 import { useRouter } from 'solito/navigation';
-import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn';
+
 import { Provider, SignInWithOAuthCredentials } from '@supabase/supabase-js';
+
+import { YStack } from '@arcana/ui';
+import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn';
+
+import { signIn } from 'app/utils/supabase';
 import { signInWithOAuth } from 'app/utils/supabase/auth';
 
 const OAUTH_CREDENTIALS = {

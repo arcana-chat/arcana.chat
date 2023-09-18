@@ -1,5 +1,6 @@
-import { InfiniteListScreen } from 'app/features/infinite-list/screen'
 import { Stack } from 'expo-router'
+
+import { InfiniteListScreen } from 'app/features/infinite-list/screen'
 
 export default function Screen() {
   return (

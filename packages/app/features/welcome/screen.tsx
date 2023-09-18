@@ -1,7 +1,10 @@
-import { useState, useMemo, useCallback, useEffect } from 'react';
-import { Stack, H1 } from '@arcana/ui';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
+import { AuthError, User } from '@supabase/supabase-js';
+
+import { H1, Stack } from '@arcana/ui';
+
 import { useUser } from 'app/utils/supabase';
-import { User, AuthError } from '@supabase/supabase-js';
 import { trpc } from 'app/utils/trpc';
 
 // const details = getUser()

@@ -1,7 +1,6 @@
 module.exports = {
   ignorePatterns: ['dist', 'node_modules'],
   parser: '@typescript-eslint/parser',
-  files: ['*.ts', '*.tsx', '*.js', '*.jsx', '*.css', '*.scss', '*.svg'],
   parserOptions: {
     sourceType: 'module',
   },
@@ -20,7 +19,7 @@ module.exports = {
   },
   rules: {
     '@typescript-eslint/no-unused-vars': [
-      'error',
+      'warn',
       {
         args: 'all',
         argsIgnorePattern: '^_',

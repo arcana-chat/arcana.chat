@@ -1,9 +1,12 @@
 import { eq } from 'drizzle-orm';
-import { UserTable, UserSchema, User } from '../db/schema';
-import { router, protectedProcedure } from '../trpc';
-import { Context } from '../context';
 import { parse } from 'valibot';
+
 import { TRPCError } from '@trpc/server';
+
+import { Context } from '../context';
+import { User, UserSchema, UserTable } from '../db/schema';
+import { protectedProcedure, router } from '../trpc';
+
 
 export const getCurrentUser = async (ctx: Context) => {
   const { db, user } = ctx;

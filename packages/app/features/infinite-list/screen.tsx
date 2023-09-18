@@ -1,5 +1,6 @@
-import { Paragraph, VirtualList, YStack } from '@arcana/ui'
 import { SolitoImage } from 'solito/image'
+
+import { Paragraph, VirtualList, YStack } from '@arcana/ui'
 
 export const InfiniteListScreen = (): React.ReactNode => {
   return <VirtualList data={data} renderItem={Item} itemHeight={80} />

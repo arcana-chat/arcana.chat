@@ -1,8 +1,11 @@
-import { AuthChangeEvent } from '@supabase/supabase-js';
-import { useSupabase } from 'app/utils/supabase/hooks/useSupabase';
 import { useEffect } from 'react';
+
 import { useRouter } from 'solito/router';
-import { useSession, useIsLoadingSession } from 'app/atoms';
+
+import { AuthChangeEvent } from '@supabase/supabase-js';
+
+import { useIsLoadingSession, useSession } from 'app/atoms';
+import { useSupabase } from 'app/utils/supabase/hooks/useSupabase';
 
 export const useAuthRedirect = () => {
   const [, setSession] = useSession();

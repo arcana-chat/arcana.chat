@@ -1,10 +1,16 @@
-import { Provider } from 'app/provider'
-import { ThemeProvider, DarkTheme, DefaultTheme } from '@react-navigation/native'
+import { useEffect } from 'react'
+import { useColorScheme } from 'react-native'
+
 import { useFonts } from 'expo-font'
 import { SplashScreen, Stack } from 'expo-router'
-import { useColorScheme } from 'react-native'
 import { SolitoImageProvider } from 'solito/image'
-import { useEffect } from 'react'
+
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
+
+import { Provider } from 'app/provider'
+
+
+
 
 export {
   // Catch any errors thrown by the Layout component.

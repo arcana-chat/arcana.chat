@@ -1,6 +1,8 @@
-import { Button, H2, Paragraph, YStack } from '@arcana/ui';
-import { ChevronLeft } from '@tamagui/lucide-icons';
 import { useLink, useParams } from 'solito/navigation';
+
+import { ChevronLeft } from '@tamagui/lucide-icons';
+
+import { Button, H2, Paragraph, YStack } from '@arcana/ui';
 
 export const ParamsScreen = (): React.ReactNode => {
   const { id } = useParams<{ id: string }>();

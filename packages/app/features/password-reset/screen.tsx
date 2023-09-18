@@ -1,6 +1,8 @@
-import { YStack } from '@arcana/ui';
 import { useRouter } from 'solito/navigation';
+
+import { YStack } from '@arcana/ui';
 import { PasswordResetComponent } from '@arcana/ui/src/PasswordReset';
+
 import { sendPasswordResetEmail } from 'app/utils/supabase/auth';
 
 export function PasswordResetScreen() {

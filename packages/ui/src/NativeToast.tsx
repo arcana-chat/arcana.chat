@@ -1,5 +1,6 @@
-import { Toast, useToastState } from '@tamagui/toast';
 import { YStack } from 'tamagui';
+
+import { Toast, useToastState } from '@tamagui/toast';
 
 export const NativeToast = (): React.ReactNode => {
   const currentToast = useToastState();
