@@ -1,38 +1,13 @@
 import { createTRPCNext } from '@trpc/next';
-import { httpBatchLink, loggerLink, wsLink } from '@trpc/client';
+import { httpBatchLink, loggerLink } from '@trpc/client';
 import { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 import type { AppRouter } from '@arcana/api/src/router';
-import { supabase } from '../supabase';
+import superjson from 'superjson';
+import { getToken } from '../supabase/cookies';
 
 const getBaseUrl = () => {
   return `${process.env.NEXT_PUBLIC_API_URL}`;
 };
-
-export const trpc = createTRPCNext<AppRouter>({
-  config() {
-    return {
-      links: [
-        loggerLink({
-          enabled: (opts) =>
-            process.env.NODE_ENV === 'development' ||
-            (opts.direction === 'down' && opts.result instanceof Error),
-        }),
-        httpBatchLink({
-          async headers() {
-            const { data } = await supabase.auth.getSession();
-            const token = data?.session?.access_token;
-
-            return {
-              Authorization: token ? `Bearer ${token}` : undefined,
-            };
-          },
-          url: `${getBaseUrl()}/trpc`,
-        }),
-      ],
-    };
-  },
-  ssr: false,
-});
 
 /**
  * Inference helpers for input types
@@ -45,3 +20,27 @@ export type RouterInputs = inferRouterInputs<AppRouter>;
  * @example type HelloOutput = RouterOutputs['example']['hello']
  **/
 export type RouterOutputs = inferRouterOutputs<AppRouter>;
+
+export const trpc = createTRPCNext<AppRouter>({
+  config() {
+    return {
+      transformer: superjson,
+      links: [
+        loggerLink({
+          enabled: (opts) =>
+            process.env.NODE_ENV === 'development' ||
+            (opts.direction === 'down' && opts.result instanceof Error),
+        }),
+        httpBatchLink({
+          async headers() {
+            return {
+              Authorization: `Bearer ${getToken()}`,
+            };
+          },
+          url: `${getBaseUrl()}/trpc`,
+        }),
+      ],
+    };
+  },
+  ssr: false,
+});

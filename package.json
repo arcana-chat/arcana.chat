@@ -8,6 +8,7 @@
     "web": "turbo run dev --filter next-app",
     "api": "cross-env NO_D1_WARNING=true turbo run dev --filter @arcana/api",
     "build": "turbo run build --filter @arcana/ui",
+    "lint": "turbo run lint",
     "generate": "pnpm --filter=@arcana/api generate",
     "migrate:local": "pnpm --filter=@arcana/api migrate:local",
     "upgrade:tamagui": "pnpm up '*tamagui*'@latest '@tamagui/*'@latest react-native-web-lite@latest",
@@ -32,7 +33,7 @@
     "@supabase/supabase-js": "^2.32.0",
     "check-dependency-version-consistency": "^4.1.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.47.0",
+    "eslint": "^8.49.0",
     "miniflare": "3.20230904.0",
     "node-gyp": "^9.4.0",
     "prettier": "^3.0.2",
@@ -45,5 +46,11 @@
     "node": ">=18.17",
     "pnpm": ">=8.7"
   },
-  "packageManager": "pnpm@8.7.4"
+  "packageManager": "pnpm@8.7.4",
+  "devDependencies": {
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0"
+  }
 }

@@ -53,7 +53,7 @@ export const createContext = async (
 
         const userId = decodedToken?.payload?.sub;
         const userEmail = decodedToken?.payload?.email;
-
+        console.log({ userEmail }, JSON.stringify(decodedToken?.payload, null, 2));
         if (userId) {
           return {
             email: userEmail,

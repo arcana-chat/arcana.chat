@@ -1,7 +1,3 @@
 module.exports = {
-  extends: 'next',
-  root: true,
-  parserOptions: {
-    project: './tsconfig.json'
-  }
-}
+  extends: ['next/core-web-vitals', '../../.eslintrc.js'],
+};

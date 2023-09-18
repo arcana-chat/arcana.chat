@@ -8,6 +8,7 @@
     "android": "TAMAGUI_TARGET=native expo run:android",
     "ios": "TAMAGUI_TARGET=native expo run:ios",
     "eject": "expo eject",
+    "lint": "eslint --fix",
     "clean": "git clean -xdf .expo node_modules"
   },
   "dependencies": {

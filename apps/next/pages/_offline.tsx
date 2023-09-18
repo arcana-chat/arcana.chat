@@ -1,8 +1,11 @@
-import { Anchor, Button, H1, Paragraph, XStack, YStack } from '@arcana/ui';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+
 import { SolitoImage } from 'solito/image';
+
 import { RotateCw } from '@tamagui/lucide-icons';
+
+import { Anchor, Button, H1, Paragraph, XStack, YStack } from '@arcana/ui';
 
 const customerCareEmail = process.env.NEXT_PUBLIC_CUSTOMER_CARE_EMAIL;
 

@@ -4,16 +4,20 @@ import '@tamagui/core/reset.css';
 import '@tamagui/font-inter/css/400.css';
 import '@tamagui/font-inter/css/700.css';
 
-import { NextThemeProvider, useRootTheme } from '@tamagui/next-theme';
-import { Provider, initialWindowMetrics } from 'app/provider';
-import { trpc } from 'app/utils/trpc/index.web';
-import Head from 'next/head';
 import React, { useMemo, useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import type { AppProps } from 'next/app';
+import Head from 'next/head';
+
 import { SolitoImageProvider } from 'solito/image';
+
+import { type Session, createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
 import { SessionContextProvider } from '@supabase/auth-helpers-react';
-import { createPagesBrowserClient, type Session } from '@supabase/auth-helpers-nextjs';
+import { NextThemeProvider, useRootTheme } from '@tamagui/next-theme';
+
+import { Provider, initialWindowMetrics } from 'app/provider';
+import { trpc } from 'app/utils/trpc/index.web';
 
 if (process.env.NODE_ENV === 'production') {
   require('../public/tamagui.css');

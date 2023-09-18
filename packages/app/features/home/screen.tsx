@@ -13,22 +13,22 @@ import {
   YStack,
   BlurView,
   useToastController,
-  Text,
   H2,
 } from '@arcana/ui';
 import { ChevronDown } from '@tamagui/lucide-icons';
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import { useLink } from 'solito/navigation';
-import { useSignOut, useSignedInStatus } from 'app/utils/supabase';
+import { useCurrentUser } from 'app/utils/supabase/hooks/useCurrentUser';
 import Constants from 'expo-constants';
-import { useSheetOpen } from '@arcana/ui/src/atoms/sheet';
+import { useSheetOpen } from 'app/atoms';
 import { SolitoImage } from 'solito/image';
+import { supabase } from 'app/utils/supabase/client';
+import { trpc } from 'app/utils/trpc';
 
 export function HomeScreen() {
-  const { data: isSignedIn, isLoading } = useSignedInStatus();
+  const utils = trpc.useContext();
 
-  const { mutateAsync: signOut, isLoading: isSigningOut } = useSignOut();
-  console.log(isSignedIn, isSigningOut);
+  const { isAuthed, user, isLoading } = useCurrentUser();
 
   const signInLink = useLink({
     href: '/sign-in',
@@ -50,6 +50,12 @@ export function HomeScreen() {
     href: '/params/tim',
   });
 
+  const signOut = useCallback(async () => {
+    supabase.auth.signOut();
+    // Clear tanstack query cache of authenticated routes
+    utils.auth.secretMessage.reset();
+  }, []);
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -60,37 +66,50 @@ export function HomeScreen() {
         <SolitoImage fill src="/images/tarot-cards.jpg" contentFit="cover" alt="Background" />
         <BlurView tint="dark" saturation={200} />
       </Stack>
-      <XStack flex={1} justifyContent="center" alignItems="center" padding="$4" space="$4">
-        <H1 fontSize={128} paddingVertical="$8" marginTop="$4">
-          🔮
-        </H1>
-        <Stack alignItems="flex-start">
-          <H1 fontSize={128} textAlign="center" fontWeight="700" letterSpacing={4}>
-            Arcana
+      <YStack flex={1} justifyContent="center" alignItems="center" space="$4">
+        <XStack justifyContent="center" alignItems="center" padding="$4" space="$4">
+          <H1 fontSize={128} paddingVertical="$8" marginTop="$4">
+            🔮
           </H1>
-        </Stack>
-      </XStack>
+          <Stack alignItems="flex-start">
+            <H1 fontSize={128} textAlign="center" fontWeight="700" letterSpacing={4}>
+              Arcana
+            </H1>
+          </Stack>
+        </XStack>
 
-      {!isSignedIn ? (
-        <>
-          <Button {...signInLink} space="$2">
-            Sign In
-          </Button>
+        {isAuthed && (
+          <XStack space="$4">
+            <Paragraph>{user?.email}</Paragraph>
+            <Paragraph>{user?.id}</Paragraph>
+          </XStack>
+        )}
 
-          <Button {...signUpLink} space="$2">
-            Sign Up
-          </Button>
-        </>
-      ) : (
-        <Button onPress={() => signOut()} space="$2">
-          Sign Out
-        </Button>
-      )}
+        {!isLoading && (
+          <>
+            {!isAuthed ? (
+              <XStack space="$4">
+                <Button {...signInLink} space="$2">
+                  Sign In
+                </Button>
+
+                <Button {...signUpLink} space="$2">
+                  Sign Up
+                </Button>
+              </XStack>
+            ) : (
+              <Button onPress={() => signOut()} space="$2">
+                Sign Out
+              </Button>
+            )}
+          </>
+        )}
+      </YStack>
     </ScrollView>
   );
 }
 
-const SheetDemo = (): React.ReactNode => {
+const SheetDemo = (): ReactNode => {
   const [open, setOpen] = useSheetOpen();
   const [position, setPosition] = useState(0);
   const toast = useToastController();

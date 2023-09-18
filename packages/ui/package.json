@@ -15,10 +15,11 @@
   "scripts": {
     "build": "tamagui-build",
     "watch": "tamagui-build --watch",
+    "lint": "eslint --fix",
     "clean": "rm -rf dist types node_modules .tamagui .turbo"
   },
   "dependencies": {
-    "@shopify/flash-list": "^1.5.0",
+    "@shopify/flash-list": "^1.6.1",
     "@tamagui/animations-moti": "latest",
     "@tamagui/collection": "latest",
     "@tamagui/core": "latest",

@@ -1,35 +1,9 @@
-import { useState, useCallback, useEffect } from 'react';
-import { GiftedChat } from 'react-native-gifted-chat';
+import { useEffect, useState } from 'react';
 
-import { H1, Stack, Paragraph, View, useWindowDimensions, Input } from '@arcana/ui';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { H1, Input, Paragraph, Stack, View } from '@arcana/ui';
+
+import { supabase } from 'app/utils/supabase/client';
 import { trpc } from 'app/utils/trpc';
-import { supabase } from 'app/utils/supabase';
-
-type Message = {
-  type: 'user' | 'bot' | 'system';
-  message: string;
-};
-
-const useChatQuery = () => {
-  return useMutation({
-    mutationFn: ({ message }: Message) =>
-      fetch('http://127.0.0.1:5000/process_messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ message }),
-      }).then(async (res) => {
-        const data = await res.json<{ response: string }>();
-
-        return {
-          message: data.response,
-          type: 'bot',
-        };
-      }),
-  });
-};
 
 export const ChatScreen = () => {
   const [prompt, setPrompt] = useState('');

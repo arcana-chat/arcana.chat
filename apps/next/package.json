@@ -6,7 +6,7 @@
     "dev": "pnpm with-env next dev",
     "build": "pnpm with-env next build",
     "start": "pnpm with-env next start",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "with-env": "dotenv -e ../../.env.local --",
     "clean": "git clean -xdf .next node_modules .tamagui"
   },
@@ -17,7 +17,7 @@
     "@supabase/auth-helpers-react": "^0.4.2",
     "@tamagui/config": "latest",
     "@tamagui/next-theme": "latest",
-    "@trpc/next": "^10.38.1",
+    "@trpc/next": "^10.38.3",
     "app": "*",
     "next": "13.4.19",
     "raf": "^3.4.1",
