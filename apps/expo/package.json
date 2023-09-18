@@ -8,7 +8,7 @@
     "android": "TAMAGUI_TARGET=native expo run:android",
     "ios": "TAMAGUI_TARGET=native expo run:ios",
     "eject": "expo eject",
-    "lint": "eslint --fix",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "clean": "git clean -xdf .expo node_modules"
   },
   "dependencies": {
@@ -41,6 +41,7 @@
     "@expo/metro-config": "^0.10.6",
     "@tamagui/babel-plugin": "latest",
     "babel-plugin-transform-inline-environment-variables": "^0.4.4",
+    "eslint-config-arcana": "workspace:*",
     "metro-minify-terser": "^0.76.7",
     "react-native-dotenv": "^3.4.9",
     "typescript": "^5.1.6"

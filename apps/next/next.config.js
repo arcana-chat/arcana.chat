@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
-const { withTamagui } = require('@tamagui/next-plugin');
 const { resolve, join } = require('path');
+
 const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
 });
+const { withTamagui } = require('@tamagui/next-plugin');
 
 const boolVals = {
   true: true,

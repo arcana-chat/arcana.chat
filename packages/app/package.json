@@ -7,7 +7,7 @@
     "*.css"
   ],
   "scripts": {
-    "lint": "eslint --fix",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "clean": "rm -rf node_modules"
   },
   "dependencies": {
@@ -38,6 +38,7 @@
     "superjson": "^1.13.1"
   },
   "devDependencies": {
-    "@types/react": "^18.2.18"
+    "@types/react": "^18.2.18",
+    "eslint-config-arcana": "workspace:*"
   }
 }

@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
+
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 
 const isPrivateRoute = (url: string) => {

@@ -33,6 +33,7 @@
     "@types/node": "^18.16.19",
     "critters": "^0.0.19",
     "dotenv-cli": "^7.2.1",
+    "eslint-config-arcana": "workspace:*",
     "eslint-config-next": "^13.4.12",
     "vercel": "latest"
   }

@@ -1,3 +1,4 @@
 module.exports = {
-  extends: ['next/core-web-vitals', '../../.eslintrc.js'],
+  root: true,
+  extends: ['next/core-web-vitals', 'arcana'],
 };
