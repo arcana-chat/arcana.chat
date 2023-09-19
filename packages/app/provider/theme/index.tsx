@@ -1,11 +1,16 @@
-import { useForceUpdate } from '@arcana/ui';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import React, { useEffect, useLayoutEffect } from 'react';
 import { Appearance } from 'react-native';
+
 import { StatusBar } from 'expo-status-bar';
+
+import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+
+import { useForceUpdate } from '@arcana/ui';
+
 import { storage } from '../kv';
-import { ThemeVariant } from 'app/utils/theme';
+
 import { appThemeKey, useAppTheme, useCurrentTheme } from 'app/atoms/theme';
+import { ThemeVariant } from 'app/utils/theme';
 
 export const TamaguiThemeProvider = ({
   children,
@@ -38,7 +43,7 @@ export const TamaguiThemeProvider = ({
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (appTheme === undefined) {
       storage.set(appThemeKey, defaultTheme);
       setAppTheme(defaultTheme);

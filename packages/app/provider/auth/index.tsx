@@ -1,7 +1,9 @@
-import { supabase } from 'app/utils/supabase/client'
-import { Props } from './index.web'
-import { AuthStatusChangeHandler } from '../../utils/supabase/components/AuthStatusChangeHandler'
-import { SessionContextProvider } from '@supabase/auth-helpers-react'
+import { SessionContextProvider } from '@supabase/auth-helpers-react';
+
+import { Props } from './index.web';
+
+import { supabase } from 'app/utils/supabase/client';
+import { AuthStatusChangeHandler } from 'app/utils/supabase/components/auth-status-change-handler';
 
 export const AuthProvider = ({ children, initialSession }: Props) => {
   return (
@@ -9,5 +11,5 @@ export const AuthProvider = ({ children, initialSession }: Props) => {
       <AuthStatusChangeHandler />
       {children}
     </SessionContextProvider>
-  )
-}
+  );
+};

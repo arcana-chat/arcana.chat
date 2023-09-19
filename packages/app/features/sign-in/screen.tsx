@@ -16,18 +16,17 @@ export const SignInScreen = (): React.ReactNode => {
   const toast = useToastController();
 
   const handleOAuthSignInWithPress = async (provider: Provider) => {
-    console.log(provider);
     const { error } = await supabase.auth.signInWithOAuth({
-      provider: provider,
-      options: { scopes: 'read:user user:email' },
+      provider,
     });
-    console.log({ error });
+
     if (error) {
       if (!isExpoGo) {
         toast.show(capitalizeWord(provider) + ' sign in failed', {
           description: error.message,
         });
       }
+
       console.log('OAuth Sign in failed', error);
       return;
     }
@@ -40,8 +39,10 @@ export const SignInScreen = (): React.ReactNode => {
       email: email,
       password: password,
     });
+
     if (error) {
       const isExpoGo = Constants.appOwnership === 'expo';
+
       if (!isExpoGo) {
         toast.show('Sign in failed', {
           description: error.message,

@@ -25,14 +25,15 @@ import {
 } from '@arcana/ui';
 
 import { useSheetOpen } from 'app/atoms';
-import { supabase } from 'app/utils/supabase/client';
 import { useCurrentUser } from 'app/utils/supabase/hooks/useCurrentUser';
+import { useSupabase } from 'app/utils/supabase/hooks/useSupabase';
 import { trpc } from 'app/utils/trpc';
 
 export function HomeScreen() {
-  const utils = trpc.useContext();
+  // const supabase = useSupabase();
+  // const utils = trpc.useContext();
 
-  const { isAuthed, user } = useCurrentUser();
+  // const { isAuthed, user } = useCurrentUser();
 
   const signInLink = useLink({
     href: '/sign-in',
@@ -54,11 +55,11 @@ export function HomeScreen() {
     href: '/params/tim',
   });
 
-  const signOut = useCallback(async () => {
-    supabase.auth.signOut();
-    // Clear tanstack query cache of authenticated routes
-    utils.auth.secretMessage.reset();
-  }, []);
+  // const signOut = useCallback(async () => {
+  //   supabase.auth.signOut();
+  //   // Clear tanstack query cache of authenticated routes
+  //   utils.auth.secretMessage.reset();
+  // }, []);
 
   return (
     <ScrollView
@@ -82,7 +83,7 @@ export function HomeScreen() {
           </Stack>
         </XStack>
 
-        {isAuthed && (
+        {/* {isAuthed && (
           <XStack space="$4">
             <Paragraph>{user?.email}</Paragraph>
             <Paragraph>{user?.id}</Paragraph>
@@ -103,7 +104,7 @@ export function HomeScreen() {
           <Button onPress={() => signOut()} space="$2">
             Sign Out
           </Button>
-        )}
+        )} */}
       </YStack>
     </ScrollView>
   );

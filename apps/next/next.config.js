@@ -66,13 +66,6 @@ module.exports = function () {
         '@arcana/ui/fonts.css': `${resolve(__dirname, '../..')}/packages/ui/assets/fonts.css`,
       };
 
-      webpackConfig.resolve.extensions = [
-        '.web.js',
-        '.web.ts',
-        '.web.tsx',
-        ...webpackConfig.resolve.extensions,
-      ];
-
       return webpackConfig;
     },
     // Needed for any package that uses react-native-web
@@ -85,13 +78,8 @@ module.exports = function () {
       'react-native-safe-area-context',
       'react-native-reanimated',
       'react-native-gesture-handler',
-      'react-native-gifted-chat',
-      'react-native-lightbox',
       'react-native-parsed-text',
-      'react-native-typing-animation',
       'react-native-communications',
-      'react-native-iphone-x-helper',
-      '@expo/react-native-action-sheet',
       'react-native-lightbox-v2',
     ],
     experimental: {

@@ -1,6 +1,7 @@
 import { createAnimations } from '@tamagui/animations-moti';
+import { type AnimationDriver } from '@tamagui/core';
 
-export const animations = createAnimations({
+export const animations: AnimationDriver = createAnimations({
   bouncy: {
     type: 'spring',
     damping: 10,

@@ -18,20 +18,20 @@ export function Provider({
   initialSession: Session | null;
 }) {
   return (
-    <TamaguiThemeProvider>
-      <TamaguiProvider>
-        <SafeAreaProvider>
-          <SolitoImageProvider>
-            <ToastProvider swipeDirection="horizontal" duration={6000} native={['mobile']}>
-              <AuthProvider initialSession={initialSession}>
-                <TRPCProvider>{children}</TRPCProvider>
-                <CustomToast />
-                <ToastViewport />
-              </AuthProvider>
-            </ToastProvider>
-          </SolitoImageProvider>
-        </SafeAreaProvider>
-      </TamaguiProvider>
-    </TamaguiThemeProvider>
+    // <TamaguiThemeProvider>
+    // <TamaguiProvider>
+    // <SafeAreaProvider>
+    <SolitoImageProvider>
+      {/* <ToastProvider swipeDirection="horizontal" duration={6000} native={['mobile']}> */}
+      {/* <AuthProvider initialSession={initialSession}> */}
+      <TRPCProvider>{children}</TRPCProvider>
+      {/* <CustomToast /> */}
+      {/* <ToastViewport /> */}
+      {/* </AuthProvider> */}
+      {/* </ToastProvider> */}
+    </SolitoImageProvider>
+    // {/* </SafeAreaProvider> */}
+    // {/* </TamaguiProvider> */}
+    // {/* // </TamaguiThemeProvider> */}
   );
 }

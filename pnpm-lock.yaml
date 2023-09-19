@@ -18,7 +18,7 @@ importers:
         specifier: ^0.5.4
         version: 0.5.4(@tamagui/core@1.68.0)(@tamagui/helpers@1.68.2)(typescript@5.2.2)
       '@supabase/supabase-js':
-        specifier: ^2.32.0
+        specifier: ^2.33.2
         version: 2.33.2
       check-dependency-version-consistency:
         specifier: ^4.1.0
@@ -30,31 +30,31 @@ importers:
         specifier: ^8.49.0
         version: 8.49.0
       miniflare:
-        specifier: 3.20230904.0
-        version: 3.20230904.0
+        specifier: 3.20230814.1
+        version: 3.20230814.1
       node-gyp:
         specifier: ^9.4.0
         version: 9.4.0
       prettier:
-        specifier: ^3.0.2
+        specifier: ^3.0.3
         version: 3.0.3
       react-native-url-polyfill:
         specifier: ^2.0.0
         version: 2.0.0(react-native@0.72.4)
       turbo:
-        specifier: ^1.10.13
+        specifier: ^1.10.14
         version: 1.10.14
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
       workerd:
-        specifier: 1.20230807.0
-        version: 1.20230807.0
+        specifier: 1.20230914.0
+        version: 1.20230914.0
 
   apps/expo:
     dependencies:
       '@arcana/ui':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/ui
       '@babel/runtime':
         specifier: ^7.22.5
@@ -151,7 +151,7 @@ importers:
   apps/next:
     dependencies:
       '@arcana/ui':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/ui
       '@ducanh2912/next-pwa':
         specifier: ^9.5.0
@@ -294,7 +294,7 @@ importers:
   packages/app:
     dependencies:
       '@arcana/ui':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../ui
       '@shopify/flash-list':
         specifier: ^1.6.1
@@ -303,7 +303,7 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0(@supabase/supabase-js@2.33.2)
       '@supabase/supabase-js':
-        specifier: ^2.32.0
+        specifier: ^2.33.2
         version: 2.33.2
       '@tamagui/animations-moti':
         specifier: 1.68.0
@@ -350,9 +350,6 @@ importers:
       react-hook-form:
         specifier: ^7.46.1
         version: 7.46.1(react@18.2.0)
-      react-native-gifted-chat:
-        specifier: ^2.4.0
-        version: 2.4.0(react-native@0.72.4)(react@18.2.0)
       react-native-mmkv:
         specifier: ^2.10.2
         version: 2.10.2(react-native@0.72.4)(react@18.2.0)
@@ -436,11 +433,8 @@ importers:
         specifier: ^14.4.2
         version: 14.4.2(expo@49.0.11)
       jotai:
-        specifier: ^2.2.2
+        specifier: ^2.4.2
         version: 2.4.2(react@18.2.0)
-      react-native:
-        specifier: 0.72.4
-        version: 0.72.4(@babel/core@7.22.20)(@babel/preset-env@7.22.20)(react@18.2.0)
       react-native-reanimated:
         specifier: 3.3.0
         version: 3.3.0(@babel/core@7.22.20)(@babel/plugin-proposal-nullish-coalescing-operator@7.18.6)(@babel/plugin-proposal-optional-chaining@7.21.0)(@babel/plugin-transform-arrow-functions@7.22.5)(@babel/plugin-transform-shorthand-properties@7.22.5)(@babel/plugin-transform-template-literals@7.22.5)(react-native@0.72.4)(react@18.2.0)
@@ -1983,8 +1977,8 @@ packages:
       mime: 3.0.0
     dev: true
 
-  /@cloudflare/workerd-darwin-64@1.20230807.0:
-    resolution: {integrity: sha512-p1XgkX6OcomFSRSHiIo6XbWB40sMExnFUWtZFfSvB7oNmkrtEvUCI3iuh+ibFI5IDSZqsRKyIHx6Oe22Z0ei5A==}
+  /@cloudflare/workerd-darwin-64@1.20230814.1:
+    resolution: {integrity: sha512-aQUO7q7qXl+SVtOiMMlVKLNOSeL6GX43RKeflwzsD74dGgyHPiSfw5KCvXhkVbyN7u+yYF6HyFdaIvHLfn5jyA==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [darwin]
@@ -1998,10 +1992,20 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
-  /@cloudflare/workerd-darwin-arm64@1.20230807.0:
-    resolution: {integrity: sha512-HjhjRFPvDg3Sh4TXyz38Z+AhaLA+0AiAmYKRadcnKhysjOaTew86POS3xdaKiZ3xG83J7rsLcqajW54znbmCkg==}
+  /@cloudflare/workerd-darwin-64@1.20230914.0:
+    resolution: {integrity: sha512-FXe4drGfvodcDN8s4pUi6nSo9zvb0pJq23xZuqQHL/ybbQq6bWooxGDzu6YWpHGoEdivjzscuNzYK7XUVbn75Q==}
+    engines: {node: '>=16'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@cloudflare/workerd-darwin-arm64@1.20230814.1:
+    resolution: {integrity: sha512-U2mcgi+AiuI/4EY5Wk/GmygiNoCNw/V2mcHmxESqe4r6XbJYOzBdEsjnqJ05rqd0JlEM8m64jRtE6/qBnQHygg==}
     engines: {node: '>=16'}
     cpu: [arm64]
     os: [darwin]
@@ -2015,10 +2019,20 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
-  /@cloudflare/workerd-linux-64@1.20230807.0:
-    resolution: {integrity: sha512-PPuGKoRILFTlZDC7uGXgrYBucopqkvicaov/ypbPmUVb/DfrXGqftEkNbXlyiXY1g0t10wXRiSZWi7hOBOIH7w==}
+  /@cloudflare/workerd-darwin-arm64@1.20230914.0:
+    resolution: {integrity: sha512-Xy8yLmEBRPc4JklXToJDX0+1ghKT9mhknrTE7PE+/B4eEWhxtGUhshjJdGbPeuZ3vppqa7cMwOLuum4sijo/vg==}
+    engines: {node: '>=16'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@cloudflare/workerd-linux-64@1.20230814.1:
+    resolution: {integrity: sha512-Q4kITXLTCuG2i2Z01fbb5AjVRRIf3+lS4ZVsFbTbIwtcOOG4Ozcw7ee7tKsFES7hFqR4Eg9gMG4/aS0mmi+L2g==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [linux]
@@ -2032,10 +2046,20 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
-  /@cloudflare/workerd-linux-arm64@1.20230807.0:
-    resolution: {integrity: sha512-ESAf2tXarK8dJl07voa/NI2BBpH1duldfgeQQQmor437A3+gSqQSBhAEmh05bjHy6dYHXgZtwLPky+LL6hmyBA==}
+  /@cloudflare/workerd-linux-64@1.20230914.0:
+    resolution: {integrity: sha512-Kppp3oL38phmNZ+MAsB7LNdXzFy7tZhAUho2Vms632j51d6btj66MXICmWXvZB/2LM1hUEtNxUBlzGJmK+9KPQ==}
+    engines: {node: '>=16'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@cloudflare/workerd-linux-arm64@1.20230814.1:
+    resolution: {integrity: sha512-BX5SaksXw+pkREVw3Rw2eSNXplqZw+14CcwW/5x/4oq/C6yn5qCvKxJfM7pukJGMI4wkJPOYops7B3g27FB/HA==}
     engines: {node: '>=16'}
     cpu: [arm64]
     os: [linux]
@@ -2049,10 +2073,20 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
+    dev: true
     optional: true
 
-  /@cloudflare/workerd-windows-64@1.20230807.0:
-    resolution: {integrity: sha512-DYKkLtT4lNRdVx+2fbYgPxdF7ypJn9bT2HYMZ93N7XPwaKFx2svBRMrZkwBcvwuNb+99Z0jnaQwdcFnHcFLzZA==}
+  /@cloudflare/workerd-linux-arm64@1.20230914.0:
+    resolution: {integrity: sha512-iQt4HEegqaWIOv0fflgYgXqOfGVzPkIHy8TrHEJiEksLFKMgR2ni/g0Oz5b9o2N5ixpcB+i+86LDKHkBWhL7fg==}
+    engines: {node: '>=16'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /@cloudflare/workerd-windows-64@1.20230814.1:
+    resolution: {integrity: sha512-GWHqfyhsG/1wm2W8afkYX3q3fWXUWWD8NGtHfAs6ZVTHdW3mmYyMhKR0lc6ptBwz5i5aXRlP2S+CxxxwwDbKpw==}
     engines: {node: '>=16'}
     cpu: [x64]
     os: [win32]
@@ -2066,6 +2100,16 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
+    dev: true
+    optional: true
+
+  /@cloudflare/workerd-windows-64@1.20230914.0:
+    resolution: {integrity: sha512-kziGib59ofuL0KWEpkhkRqS6qM3OIJMB7UHc9tsv5eHx0qEyDwOYe2rzBeGFQsa0HTUgt2Qp8Sj/xKqM2hfQFQ==}
+    engines: {node: '>=16'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
     optional: true
 
   /@cloudflare/workers-types@4.20230914.0:
@@ -2906,7 +2950,7 @@ packages:
       getenv: 1.0.0
       glob: 7.1.6
       resolve-from: 5.0.0
-      semver: 7.5.3
+      semver: 7.5.4
       slash: 3.0.0
       xcode: 3.0.1
       xml2js: 0.6.0
@@ -3130,16 +3174,6 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
-    dev: false
-
-  /@expo/react-native-action-sheet@4.0.1(react@18.2.0):
-    resolution: {integrity: sha512-FwCFpjpB6yzrK8CIWssLlh/i6zQFytFBiJfNdz0mJ2ckU4hWk8SrjB37P0Q4kF7w0bnIdYzPgRbdPR9hnfFqPw==}
-    peerDependencies:
-      react: '>=16.3.0'
-    dependencies:
-      '@types/hoist-non-react-statics': 3.3.2
-      hoist-non-react-statics: 3.3.2
-      react: 18.2.0
     dev: false
 
   /@expo/rudder-sdk-node@1.1.1:
@@ -5652,13 +5686,6 @@ packages:
     resolution: {integrity: sha512-Xxk14BrwHnGi0xlURPRb+Y0UNn2w3cTkeFm7pKMsYOaNgH/kabbJLhcBoNIodwsbTz7Z8KcWjtDvlGH0nc0U9w==}
     dev: false
 
-  /@types/hoist-non-react-statics@3.3.2:
-    resolution: {integrity: sha512-YIQtIg4PKr7ZyqNPZObpxfHsHEmuB8dXCxd6qVcGuQVDK2bpsF7bYNnBJ4Nn7giuACZg+WewExgrtAJ3XnA4Xw==}
-    dependencies:
-      '@types/react': 18.2.22
-      hoist-non-react-statics: 3.3.2
-    dev: false
-
   /@types/html-minifier-terser@6.1.0:
     resolution: {integrity: sha512-oh/6byDPnL1zeNXFrDXFLyZjkr1MsBG667IM792caf1L2UPOOMf65NFzjUH/ltyfwjAGfs1rsX1eftK0jC/KIg==}
     dev: true
@@ -5719,6 +5746,7 @@ packages:
 
   /@types/prop-types@15.7.6:
     resolution: {integrity: sha512-RK/kBbYOQQHLYj9Z95eh7S6t7gq4Ojt/NT8HTk8bWVhA5DaF+5SMnxHKkP4gPNN3wAZkKP+VjAf0ebtYzf+fxg==}
+    dev: true
 
   /@types/qs@6.9.8:
     resolution: {integrity: sha512-u95svzDlTysU5xecFNTgfFG5RUWu1A9P0VzgpcIiGZA9iraHOdSzcxMxQ55DyeRaGCSxQi7LxXDI4rzq/MYfdg==}
@@ -5730,6 +5758,7 @@ packages:
       '@types/prop-types': 15.7.6
       '@types/scheduler': 0.16.3
       csstype: 3.1.2
+    dev: true
 
   /@types/resolve@1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
@@ -5745,6 +5774,7 @@ packages:
 
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
+    dev: true
 
   /@types/semver@6.2.3:
     resolution: {integrity: sha512-KQf+QAMWKMrtBMsB8/24w53tEsxllMj6TuA80TT/5igJalLI/zm0L3oXRbIAl4Ohfc85gyHX/jhMwsVkmhLU4A==}
@@ -7568,6 +7598,7 @@ packages:
 
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
+    dev: true
 
   /d@1.0.1:
     resolution: {integrity: sha512-m62ShEObQ39CfralilEQRjH6oAMtNCV1xJyEx5LpRYUVN+EviphDgUc/F3hnYbADmkiNs67Y+3ylmlG7Lnu+FA==}
@@ -7588,10 +7619,6 @@ packages:
 
   /dayjs@1.11.9:
     resolution: {integrity: sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==}
-    dev: false
-
-  /dayjs@1.8.26:
-    resolution: {integrity: sha512-KqtAuIfdNfZR5sJY1Dixr2Is4ZvcCqhb0dZpCOt5dGEFiMzoIbjkTSzUb4QKTCsP+WNpGwUjAFIZrnZvUxxkhw==}
     dev: false
 
   /debug@2.6.9:
@@ -12068,6 +12095,32 @@ packages:
     resolution: {integrity: sha512-z0yWI+4FDrrweS8Zmt4Ej5HdJmky15+L2e6Wgn3+iK5fWzb6T3fhNFq2+MeTRb064c6Wr4N/wv0DzQTjNzHNGQ==}
     engines: {node: '>=10'}
 
+  /miniflare@3.20230814.1:
+    resolution: {integrity: sha512-LMgqd1Ut0+fnlvQepVbbBYQczQnyuuap8bgUwOyPETka0S9NR9NxMQSNaBgVZ0uOaG7xMJ/OVTRlz+TGB86PWA==}
+    engines: {node: '>=16.13'}
+    dependencies:
+      acorn: 8.10.0
+      acorn-walk: 8.2.0
+      better-sqlite3: 8.6.0
+      capnp-ts: 0.7.0
+      exit-hook: 2.2.1
+      glob-to-regexp: 0.4.1
+      http-cache-semantics: 4.1.1
+      kleur: 4.1.5
+      set-cookie-parser: 2.6.0
+      source-map-support: 0.5.21
+      stoppable: 1.1.0
+      undici: 5.24.0
+      workerd: 1.20230814.1
+      ws: 8.14.1
+      youch: 3.3.1
+      zod: 3.22.2
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: false
+
   /miniflare@3.20230904.0:
     resolution: {integrity: sha512-+OWQqEk8hV7vZaPCoj5dk1lZr4YUy56OiyNZ45/3ITYf+ZxgQOBPWhQhpw1jCahkRKGPa9Aykz01sc+GhPZYDA==}
     engines: {node: '>=16.13'}
@@ -12091,6 +12144,7 @@ packages:
       - bufferutil
       - supports-color
       - utf-8-validate
+    dev: true
 
   /minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -12124,7 +12178,7 @@ packages:
     resolution: {integrity: sha512-6T6lH0H8OG9kITm/Jm6tdooIbogG9e0tLgpY6mphXSm/A9u8Nq1ryBG+Qspiub9LjWlBPsPS3tWQ/Botq4FdxA==}
     engines: {node: '>= 8'}
     dependencies:
-      minipass: 3.1.6
+      minipass: 3.3.6
     dev: false
 
   /minipass-fetch@3.0.4:
@@ -13198,14 +13252,6 @@ packages:
       sisteransi: 1.0.5
     dev: false
 
-  /prop-types@15.7.2:
-    resolution: {integrity: sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react-is: 16.13.1
-    dev: false
-
   /prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
     dependencies:
@@ -13379,10 +13425,6 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
-  /react-native-communications@2.2.1:
-    resolution: {integrity: sha512-5+C0X9mopI0+qxyQHzOPEi5v5rxNBQjxydPPiKMQSlX1RBIcJ8uTcqUPssQ9Mo8p6c1IKIWJUSqCj4jAmD0qVQ==}
-    dev: false
-
   /react-native-dotenv@3.4.9(@babel/runtime@7.22.15):
     resolution: {integrity: sha512-dbyd+mcy7SUzxEgmt33TRf1FGcNe6swJhXmB0unKkI49F7+pidog9kPtjxMLTAfmKA8gcN2XHQSKltGfGbGCLQ==}
     peerDependencies:
@@ -13407,61 +13449,12 @@ packages:
       react-native: 0.72.4(@babel/core@7.22.20)(@babel/preset-env@7.22.20)(react@18.2.0)
     dev: false
 
-  /react-native-gifted-chat@2.4.0(react-native@0.72.4)(react@18.2.0):
-    resolution: {integrity: sha512-dTpSMH8T4s16dM75oLXiDawpXoVSnApJZY9TWf0jYSRShw++0knnp38hO857zOrt6XhqJKm0JntT0pywYI3rYg==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-    dependencies:
-      '@expo/react-native-action-sheet': 4.0.1(react@18.2.0)
-      dayjs: 1.8.26
-      prop-types: 15.7.2
-      react: 18.2.0
-      react-native: 0.72.4(@babel/core@7.22.20)(@babel/preset-env@7.22.20)(react@18.2.0)
-      react-native-communications: 2.2.1
-      react-native-iphone-x-helper: 1.3.1(react-native@0.72.4)
-      react-native-lightbox-v2: 0.9.0(react-native@0.72.4)(react@18.2.0)
-      react-native-parsed-text: 0.0.22(react-native@0.72.4)(react@18.2.0)
-      react-native-typing-animation: 0.1.7(prop-types@15.7.2)(react-native@0.72.4)(react@18.2.0)
-      use-memo-one: 1.1.3(react@18.2.0)
-      uuid: 3.4.0
-    dev: false
-
-  /react-native-iphone-x-helper@1.3.1(react-native@0.72.4):
-    resolution: {integrity: sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==}
-    peerDependencies:
-      react-native: '>=0.42.0'
-    dependencies:
-      react-native: 0.72.4(@babel/core@7.22.20)(@babel/preset-env@7.22.20)(react@18.2.0)
-    dev: false
-
-  /react-native-lightbox-v2@0.9.0(react-native@0.72.4)(react@18.2.0):
-    resolution: {integrity: sha512-Fc5VFHFj2vokS+OegyTsANKb1CYoUlOtAv+EBH5wtpJn1b5cey6jVXH7136G5+8OC9JmKWSgKHc5thFwOoZTUg==}
-    peerDependencies:
-      react: '>=16.8.0'
-      react-native: '>=0.61.0'
-    dependencies:
-      react: 18.2.0
-      react-native: 0.72.4(@babel/core@7.22.20)(@babel/preset-env@7.22.20)(react@18.2.0)
-    dev: false
-
   /react-native-mmkv@2.10.2(react-native@0.72.4)(react@18.2.0):
     resolution: {integrity: sha512-hNrZzwvIFyogJkqf//rVSw7EwceYqkx/jl3hb5tzct6qqwEmS1L9ybvnDjzDkaMyDeouQIqAnsdnb6AuDSrgQQ==}
     peerDependencies:
       react: '*'
       react-native: '>=0.71.0'
     dependencies:
-      react: 18.2.0
-      react-native: 0.72.4(@babel/core@7.22.20)(@babel/preset-env@7.22.20)(react@18.2.0)
-    dev: false
-
-  /react-native-parsed-text@0.0.22(react-native@0.72.4)(react@18.2.0):
-    resolution: {integrity: sha512-hfD83RDXZf9Fvth3DowR7j65fMnlqM9PpxZBGWkzVcUTFtqe6/yPcIoIAgrJbKn6YmtzkivmhWE2MCE4JKBXrQ==}
-    peerDependencies:
-      react: '*'
-      react-native: '*'
-    dependencies:
-      prop-types: 15.7.2
       react: 18.2.0
       react-native: 0.72.4(@babel/core@7.22.20)(@babel/preset-env@7.22.20)(react@18.2.0)
     dev: false
@@ -13532,18 +13525,6 @@ packages:
     dependencies:
       css-select: 5.1.0
       css-tree: 1.1.3
-      react: 18.2.0
-      react-native: 0.72.4(@babel/core@7.22.20)(@babel/preset-env@7.22.20)(react@18.2.0)
-    dev: false
-
-  /react-native-typing-animation@0.1.7(prop-types@15.7.2)(react-native@0.72.4)(react@18.2.0):
-    resolution: {integrity: sha512-4H3rF9M+I2yAZpYJcY0Mb29TXkn98QK12rrKSY6LZj1BQD9NNmRZuNXzwX4XHapsIz+N/J8M3p27FOQPbfzqeg==}
-    peerDependencies:
-      prop-types: '*'
-      react: '*'
-      react-native: '*'
-    dependencies:
-      prop-types: 15.7.2
       react: 18.2.0
       react-native: 0.72.4(@babel/core@7.22.20)(@babel/preset-env@7.22.20)(react@18.2.0)
     dev: false
@@ -14529,7 +14510,7 @@ packages:
     resolution: {integrity: sha512-97qShzy1AiyxvPNIkLWoGua7xoQzzPjQ0HAH4B0rWKo7SZ6USuPcrUiAFrws0UH8RrbWmgq3LMTObhPIHbbBeQ==}
     engines: {node: '>= 8'}
     dependencies:
-      minipass: 3.1.6
+      minipass: 3.3.6
     dev: false
 
   /stack-utils@2.0.6:
@@ -15585,14 +15566,6 @@ packages:
       react: 18.2.0
     dev: false
 
-  /use-memo-one@1.1.3(react@18.2.0):
-    resolution: {integrity: sha512-g66/K7ZQGYrI6dy8GLpVcMsBp4s17xNkYJVSMvTEevGy3nDxHOfE6z8BVE22+5G5x7t3+bhzrlTDB7ObrEE0cQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: false
-
   /use-sidecar@1.1.2(react@18.2.0):
     resolution: {integrity: sha512-epTbsLuzZ7lPClpz2TyryBfztm7m+28DlEv2ZCQ3MDr5ssiwyOwGH/e5F9CkfWjJ1t4clvI58yF822/GUkjjhw==}
     engines: {node: '>=10'}
@@ -16089,17 +16062,17 @@ packages:
       workbox-core: 7.0.0
     dev: false
 
-  /workerd@1.20230807.0:
-    resolution: {integrity: sha512-yDdHld8wm5lQ6M/WYD68tIzbAmPjcgAoVAYhAHQFaXZSpryjIw9mT3O/NEloyZ8xiickpoPuNSQ4ffxPLao2+Q==}
+  /workerd@1.20230814.1:
+    resolution: {integrity: sha512-zJeSEteXuAD+bpYJT8WvzTAHvIAkKPVxOV+Jy6zCLKz5e08N3OUbAF+wrvGWc8b2aB1sj+IYsdXfkv4puH+qXQ==}
     engines: {node: '>=16'}
     hasBin: true
     requiresBuild: true
     optionalDependencies:
-      '@cloudflare/workerd-darwin-64': 1.20230807.0
-      '@cloudflare/workerd-darwin-arm64': 1.20230807.0
-      '@cloudflare/workerd-linux-64': 1.20230807.0
-      '@cloudflare/workerd-linux-arm64': 1.20230807.0
-      '@cloudflare/workerd-windows-64': 1.20230807.0
+      '@cloudflare/workerd-darwin-64': 1.20230814.1
+      '@cloudflare/workerd-darwin-arm64': 1.20230814.1
+      '@cloudflare/workerd-linux-64': 1.20230814.1
+      '@cloudflare/workerd-linux-arm64': 1.20230814.1
+      '@cloudflare/workerd-windows-64': 1.20230814.1
     dev: false
 
   /workerd@1.20230904.0:
@@ -16113,6 +16086,20 @@ packages:
       '@cloudflare/workerd-linux-64': 1.20230904.0
       '@cloudflare/workerd-linux-arm64': 1.20230904.0
       '@cloudflare/workerd-windows-64': 1.20230904.0
+    dev: true
+
+  /workerd@1.20230914.0:
+    resolution: {integrity: sha512-ditzSsIwHlz5m2uzbQ60H0MucB+yLYlxdIGoBtAwFYKJXTMR+j2wDPmC+Y72It5OO4Uo56gIm8BweaymWVLWOA==}
+    engines: {node: '>=16'}
+    hasBin: true
+    requiresBuild: true
+    optionalDependencies:
+      '@cloudflare/workerd-darwin-64': 1.20230914.0
+      '@cloudflare/workerd-darwin-arm64': 1.20230914.0
+      '@cloudflare/workerd-linux-64': 1.20230914.0
+      '@cloudflare/workerd-linux-arm64': 1.20230914.0
+      '@cloudflare/workerd-windows-64': 1.20230914.0
+    dev: false
 
   /wrangler@3.8.0:
     resolution: {integrity: sha512-sTdD+6fMEpM9ROxv+gcyxgTKpnf7tB5ftRV5+wupsdljWkow5C00UCWU/IWSOUfuitAGAj1PWATjKfrRp9Bk9w==}

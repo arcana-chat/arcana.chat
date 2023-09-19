@@ -1,24 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { H1, Input, Paragraph, Stack, View } from '@arcana/ui';
 
-import { supabase } from 'app/utils/supabase/client';
 import { trpc } from 'app/utils/trpc';
 
 export const ChatScreen = () => {
   const [prompt, setPrompt] = useState('');
   const [messages, setMessages] = useState<any[]>([]);
-
-  useEffect(() => {
-    const subscription = supabase
-      .channel('tarot-session')
-      .on('broadcast', { event: 'test' }, (payload) => console.log(payload))
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(subscription);
-    };
-  }, []);
 
   const ai = trpc.ai.generateText.useMutation({
     onSuccess: (data) => {
