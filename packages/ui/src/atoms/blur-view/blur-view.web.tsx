@@ -32,16 +32,21 @@ export type BlurViewProps = {
   saturation?: number;
 } & StackProps;
 
-/**
- * @links
- * https://developer.mozilla.org/en-US/docs/Web/API/CSS/supports
- * https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility
- */
-const isBlurSupported = () =>
-  !isServer &&
-  typeof CSS !== 'undefined' &&
-  (CSS.supports?.('-webkit-backdrop-filter', 'blur(1px)') ||
-    CSS.supports?.('backdrop-filter', 'blur(1px)'));
+const isBlurSupported = () => {
+  // TODO: Replace with CSS or static extraction to ensure hydration errors cannot happen.
+  // Enable by default in Node.js
+  if (isServer) {
+    return true;
+  }
+
+  // https://developer.mozilla.org/en-US/docs/Web/API/CSS/supports
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility
+  return (
+    typeof CSS !== 'undefined' &&
+    (CSS.supports('-webkit-backdrop-filter', 'blur(1px)') ||
+      CSS.supports('backdrop-filter', 'blur(1px)'))
+  );
+};
 
 const StyledBlurView = styled(Stack, {
   name: 'BlurView',

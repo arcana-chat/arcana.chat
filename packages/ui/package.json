@@ -30,7 +30,7 @@
     "@tamagui/toast": "1.68.0",
     "@tanstack/react-table": "^8.10.0",
     "@tanstack/react-virtual": "3.0.0-beta.59",
-    "expo-blur": "^12.4.1",
+    "expo-blur": "^12.6.0",
     "expo-constants": "^14.4.2",
     "jotai": "^2.4.2",
     "react-native-safe-area-context": "4.7.1",

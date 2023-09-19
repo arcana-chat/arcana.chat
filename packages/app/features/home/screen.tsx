@@ -1,27 +1,7 @@
-import React, { useState } from 'react';
-import { Linking } from 'react-native';
-
 import { SolitoImage } from 'solito/image';
 import { useLink } from 'solito/link';
 
-import { ChevronDown } from '@tamagui/lucide-icons';
-
-import {
-  Anchor,
-  Button,
-  H1,
-  H3,
-  Paragraph,
-  ScrollView,
-  Separator,
-  Sheet,
-  Stack,
-  XStack,
-  YStack,
-  useToastController,
-} from '@arcana/ui';
-
-import { useSheetOpen } from '../../atoms/sheet';
+import { BlurView, Button, H1, Paragraph, ScrollView, Stack, XStack, YStack } from '@arcana/ui';
 
 import { useCurrentUser } from 'app/utils/supabase/hooks/useCurrentUser';
 import { useSupabase } from 'app/utils/supabase/hooks/useSupabase';
@@ -31,7 +11,6 @@ export function HomeScreen() {
   const utils = trpc.useContext();
   const supabase = useSupabase();
   const { user } = useCurrentUser();
-  const toast = useToastController();
 
   const signInLink = useLink({
     href: '/sign-in',
@@ -42,10 +21,10 @@ export function HomeScreen() {
   });
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Stack position="fixed" width="100%" height="100%">
         <SolitoImage fill src="/images/tarot-cards.jpg" contentFit="cover" alt="Background" />
-        {/* <BlurView tint="dark" saturation={200} /> */}
+        <BlurView tint="dark" saturation={200} />
       </Stack>
       <YStack flex={1} justifyContent="center" alignItems="center" space="$4">
         <XStack justifyContent="center" alignItems="center" padding="$4" space="$4">
