@@ -1,17 +1,25 @@
-import { useRouter } from 'solito/navigation';
+import { useRouter } from 'solito/router';
 
-import { YStack } from '@arcana/ui';
-import { PasswordResetComponent } from '@arcana/ui/src/PasswordReset';
+import { YStack, useToastController } from '@arcana/ui';
 
-import { sendPasswordResetEmail } from 'app/utils/supabase/auth';
+import { PasswordResetComponent } from 'app/components/PasswordReset';
+import { isExpoGo } from 'app/utils/flags';
+import { useSupabase } from 'app/utils/supabase/hooks/useSupabase';
 
 export function PasswordResetScreen() {
   const { push } = useRouter();
+  const toast = useToastController();
+  const supabase = useSupabase();
 
   const handleEmailWithPress = async (email) => {
     // Send email with the password reset link
-    const { error } = await sendPasswordResetEmail(email);
+    const { error } = await supabase.auth.resetPasswordForEmail(email);
     if (error) {
+      if (!isExpoGo) {
+        toast.show('Password reset request failed', {
+          description: error.message,
+        });
+      }
       console.log('Password reset request failed', error);
       return;
     }

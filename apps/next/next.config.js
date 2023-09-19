@@ -1,4 +1,3 @@
-/** @type {import('next').NextConfig} */
 const { resolve, join } = require('path');
 
 const withPWA = require('@ducanh2912/next-pwa').default({

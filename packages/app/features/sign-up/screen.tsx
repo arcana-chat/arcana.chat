@@ -1,36 +1,63 @@
-import { useRouter } from 'solito/navigation';
+import { useRouter } from 'solito/router';
 
-import { Provider } from '@supabase/supabase-js';
+import type { Provider } from '@supabase/supabase-js';
 
-import { YStack } from '@arcana/ui';
+import { YStack, useToastController } from '@arcana/ui';
 
 import { SignUpSignInComponent } from 'app/components/SignUpSignIn';
-import { signUp } from 'app/utils/supabase';
-import { signInWithOAuth } from 'app/utils/supabase/auth';
+import { isExpoGo } from 'app/utils/flags';
+import { capitalizeWord } from 'app/utils/string';
+import { useSupabase } from 'app/utils/supabase/hooks/useSupabase';
 
 export const SignUpScreen = (): React.ReactNode => {
   const { push } = useRouter();
+  const toast = useToastController();
+  const supabase = useSupabase();
 
   const handleOAuthSignInWithPress = async (provider: Provider) => {
-    const { error } = await signInWithOAuth({ provider: provider });
-
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: provider,
+      options:
+        provider === 'google'
+          ? {
+              queryParams: {
+                access_type: 'offline',
+                prompt: 'consent',
+              },
+            }
+          : {},
+    });
     if (error) {
-      console.log('OAuth Sign in failed', error);
+      if (!isExpoGo) {
+        toast.show(capitalizeWord(provider) + ' sign up failed', {
+          description: error.message,
+        });
+      }
       return;
     }
-
     push('/');
   };
 
-  const handleEmailSignUpWithPress = async (emailAddress, password) => {
-    const res = await signUp(emailAddress, password);
-
-    if (res.error) {
-      console.log('Sign up failed', res.error);
-      return;
+  const handleEmailSignUpWithPress = async (email: string, password: string) => {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+    if (error) {
+      if (!isExpoGo) {
+        console.log('error', error);
+        toast.show('Sign up failed', {
+          message: error.message,
+        });
+      }
+    } else if (data?.user) {
+      if (!isExpoGo) {
+        toast.show('Email Confirmation', {
+          message: 'Check your email ',
+        });
+      }
+      push('/');
     }
-
-    push('/');
   };
 
   return (

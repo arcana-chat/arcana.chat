@@ -1,6 +1,6 @@
 import { forwardRef, useMemo } from 'react';
 
-import { Stack, StackProps, TamaguiElement, styled } from '@tamagui/core';
+import { Stack, StackProps, TamaguiElement, isServer, styled } from '@tamagui/core';
 
 // https://github.com/expo/expo/blob/main/packages/expo-blur/src/BlurView.web.tsx
 
@@ -38,9 +38,10 @@ export type BlurViewProps = {
  * https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter#Browser_compatibility
  */
 const isBlurSupported = () =>
+  !isServer &&
   typeof CSS !== 'undefined' &&
-  (CSS.supports('-webkit-backdrop-filter', 'blur(1px)') ||
-    CSS.supports('backdrop-filter', 'blur(1px)'));
+  (CSS.supports?.('-webkit-backdrop-filter', 'blur(1px)') ||
+    CSS.supports?.('backdrop-filter', 'blur(1px)'));
 
 const StyledBlurView = styled(Stack, {
   name: 'BlurView',

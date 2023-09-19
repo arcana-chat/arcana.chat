@@ -1,35 +1,37 @@
-import { useColorScheme } from 'react-native';
-import { Metrics, SafeAreaProvider } from 'react-native-safe-area-context';
+import { Session } from '@supabase/supabase-js';
 
-import { CustomToast, TamaguiProvider, TamaguiProviderProps, ToastProvider } from '@arcana/ui';
+import { CustomToast, ToastProvider } from '@arcana/ui';
 
-import config from '../tamagui.config';
-import { ToastViewport } from './toast/ToastViewport';
+import { AuthProvider } from './auth';
+import { SafeAreaProvider } from './safe-area';
+import { SolitoImageProvider } from './solito-image';
+import { TamaguiProvider } from './tamagui';
+import { TamaguiThemeProvider } from './theme';
+import { ToastViewport } from './toast-viewport';
 import { TRPCProvider } from './trpc';
 
-export const initialWindowMetrics: Metrics | null = {
-  frame: { x: 0, y: 0, width: 0, height: 0 },
-  insets: { top: 0, left: 0, right: 0, bottom: 0 },
-};
-
-export function Provider({ children, ...rest }: Omit<TamaguiProviderProps, 'config'>) {
-  const scheme = useColorScheme();
-
+export function Provider({
+  children,
+  initialSession,
+}: {
+  children: React.ReactNode;
+  initialSession: Session | null;
+}) {
   return (
-    <TamaguiProvider
-      config={config}
-      disableInjectCSS
-      disableRootThemeClass
-      defaultTheme={scheme === 'dark' ? 'dark' : 'light'}
-      {...rest}
-    >
-      <SafeAreaProvider>
-        <ToastProvider swipeDirection="horizontal" duration={6000} native={['mobile']}>
-          <TRPCProvider>{children}</TRPCProvider>
-          <CustomToast />
-          <ToastViewport />
-        </ToastProvider>
-      </SafeAreaProvider>
-    </TamaguiProvider>
+    <TamaguiThemeProvider>
+      <TamaguiProvider>
+        <SafeAreaProvider>
+          <SolitoImageProvider>
+            <ToastProvider swipeDirection="horizontal" duration={6000} native={['mobile']}>
+              <AuthProvider initialSession={initialSession}>
+                <TRPCProvider>{children}</TRPCProvider>
+                <CustomToast />
+                <ToastViewport />
+              </AuthProvider>
+            </ToastProvider>
+          </SolitoImageProvider>
+        </SafeAreaProvider>
+      </TamaguiProvider>
+    </TamaguiThemeProvider>
   );
 }

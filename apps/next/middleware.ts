@@ -2,10 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server';
 
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 
-const isPrivateRoute = (url: string) => {
-  const privateRoute = ['/chat'];
-  return privateRoute.includes(url);
-};
+const isPrivateRoute = (url: string) => ['/chat'].includes(url);
 
 /**
  * We need to handle any server side items here, we should know what the user has before

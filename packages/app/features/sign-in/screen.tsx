@@ -1,63 +1,56 @@
-import { useRouter } from 'solito/navigation';
+import Constants from 'expo-constants';
+import { useRouter } from 'solito/router';
 
-import { Provider, SignInWithOAuthCredentials } from '@supabase/supabase-js';
+import type { Provider } from '@supabase/supabase-js';
 
-import { YStack } from '@arcana/ui';
+import { YStack, useToastController } from '@arcana/ui';
+
 import { SignUpSignInComponent } from 'app/components/SignUpSignIn';
-
-import { signIn } from 'app/utils/supabase';
-import { signInWithOAuth } from 'app/utils/supabase/auth';
-
-const OAUTH_CREDENTIALS = {
-  // Verified providers
-  apple: { provider: 'apple' },
-  google: {
-    provider: 'google',
-    options: { queryParams: { access_type: 'offline', prompt: 'consent' } },
-  },
-  discord: { provider: 'discord' },
-  // Unverified providers
-  kakao: { provider: 'kakao' },
-  twitter: { provider: 'twitter' },
-  figma: { provider: 'figma' },
-  github: { provider: 'github' },
-  gitlab: { provider: 'gitlab' },
-  facebook: { provider: 'facebook' },
-  bitbucket: { provider: 'bitbucket' },
-  twitch: { provider: 'twitch' },
-  keycloak: { provider: 'keycloak' },
-  linkedin: { provider: 'linkedin' },
-  notion: { provider: 'notion' },
-  slack: { provider: 'slack' },
-  spotify: { provider: 'spotify' },
-  zoom: { provider: 'zoom' },
-  azure: { provider: 'azure' },
-  workos: { provider: 'workos' },
-} satisfies Record<Provider, SignInWithOAuthCredentials>;
+import { isExpoGo } from 'app/utils/flags';
+import { capitalizeWord } from 'app/utils/string';
+import { useSupabase } from 'app/utils/supabase/hooks/useSupabase';
 
 export const SignInScreen = (): React.ReactNode => {
-  const { push } = useRouter();
+  const { replace } = useRouter();
+  const supabase = useSupabase();
+  const toast = useToastController();
 
   const handleOAuthSignInWithPress = async (provider: Provider) => {
-    const { error } = await signInWithOAuth({ provider });
-
+    console.log(provider);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: provider,
+      options: { scopes: 'read:user user:email' },
+    });
+    console.log({ error });
     if (error) {
+      if (!isExpoGo) {
+        toast.show(capitalizeWord(provider) + ' sign in failed', {
+          description: error.message,
+        });
+      }
       console.log('OAuth Sign in failed', error);
       return;
     }
 
-    push('/');
+    replace('/');
   };
 
-  const handleEmailSignInWithPress = async (emailAddress, password) => {
-    const res = await signIn(emailAddress, password);
-
-    if (res.error) {
-      console.log('Sign in failed', res.error);
+  const handleEmailSignInWithPress = async (email: string, password: string) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+    if (error) {
+      const isExpoGo = Constants.appOwnership === 'expo';
+      if (!isExpoGo) {
+        toast.show('Sign in failed', {
+          description: error.message,
+        });
+      }
       return;
     }
 
-    push('/');
+    replace('/');
   };
 
   return (

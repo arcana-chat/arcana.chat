@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useState } from 'react';
+import { type ReactNode, useCallback, useState } from 'react';
 
 import Constants from 'expo-constants';
 import { SolitoImage } from 'solito/image';
@@ -32,7 +32,7 @@ import { trpc } from 'app/utils/trpc';
 export function HomeScreen() {
   const utils = trpc.useContext();
 
-  const { isAuthed, user, isLoading } = useCurrentUser();
+  const { isAuthed, user } = useCurrentUser();
 
   const signInLink = useLink({
     href: '/sign-in',
@@ -89,24 +89,20 @@ export function HomeScreen() {
           </XStack>
         )}
 
-        {!isLoading && (
-          <>
-            {!isAuthed ? (
-              <XStack space="$4">
-                <Button {...signInLink} space="$2">
-                  Sign In
-                </Button>
+        {!isAuthed ? (
+          <XStack space="$4">
+            <Button {...signInLink} space="$2">
+              Sign In
+            </Button>
 
-                <Button {...signUpLink} space="$2">
-                  Sign Up
-                </Button>
-              </XStack>
-            ) : (
-              <Button onPress={() => signOut()} space="$2">
-                Sign Out
-              </Button>
-            )}
-          </>
+            <Button {...signUpLink} space="$2">
+              Sign Up
+            </Button>
+          </XStack>
+        ) : (
+          <Button onPress={() => signOut()} space="$2">
+            Sign Out
+          </Button>
         )}
       </YStack>
     </ScrollView>

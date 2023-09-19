@@ -1,14 +1,15 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import { Link } from 'solito/link'
-import { Button, Image, Input, Paragraph, Stack, XStack, YStack } from 'tamagui'
+import { SolitoImage } from 'solito/image';
+import { Link } from 'solito/link';
+import { Button, Input, Paragraph, Stack, XStack, YStack } from 'tamagui';
 
-import { type Provider } from '@supabase/supabase-js'
+import { type Provider } from '@supabase/supabase-js';
 
 interface Props {
-  type: 'sign-up' | 'sign-in'
-  handleOAuthWithPress: (provider: Provider) => void
-  handleEmailWithPress: (emailAddress, password) => void
+  type: 'sign-up' | 'sign-in';
+  handleOAuthWithPress: (provider: Provider) => void;
+  handleEmailWithPress: (email, password) => void;
 }
 
 export const SignUpSignInComponent = ({
@@ -16,8 +17,8 @@ export const SignUpSignInComponent = ({
   handleOAuthWithPress,
   handleEmailWithPress,
 }: Props): React.ReactNode => {
-  const [emailAddress, setEmailAddress] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
     <YStack
@@ -32,7 +33,7 @@ export const SignUpSignInComponent = ({
       backgroundColor="$background"
     >
       <Paragraph size="$5" fontWeight={'700'} opacity={0.8} marginBottom="$1">
-        {type === 'sign-up' ? 'Create your account' : 'Log in to your account'}
+        {type === 'sign-up' ? 'Create your account' : 'Sign in to your account'}
       </Paragraph>
       {/* all the oauth sign up options */}
       <XStack space justifyContent={'space-evenly'} theme="light">
@@ -44,11 +45,11 @@ export const SignUpSignInComponent = ({
           focusStyle={{ scale: 0.95 }}
           borderColor="$gray8Light"
         >
-          <Image
+          <SolitoImage
             style={{ width: 20, height: 20 }}
-            source={{ width: 20, height: 20, uri: 'auth/google-logo.png' }}
-            width="100%"
-            height="100%"
+            src={'/auth/google-logo.png'}
+            width={20}
+            height={20}
             resizeMode="contain"
             alt="Google Logo"
           />
@@ -60,11 +61,11 @@ export const SignUpSignInComponent = ({
           focusStyle={{ scale: 0.95 }}
           borderColor="$gray8Light"
         >
-          <Image
+          <SolitoImage
             style={{ width: 22, height: 22 }}
-            source={{ width: 22, height: 22, uri: 'auth/apple-logo.png' }}
-            width="100%"
-            height="100%"
+            src={'/auth/apple-logo.png'}
+            width={22}
+            height={22}
             resizeMode="contain"
             alt="Apple Logo"
           />
@@ -76,11 +77,11 @@ export const SignUpSignInComponent = ({
           focusStyle={{ scale: 0.95 }}
           borderColor="$gray8Light"
         >
-          <Image
+          <SolitoImage
             style={{ width: 25, height: 22 }}
-            source={{ width: 25, height: 22, uri: 'auth/discord-logo.png' }}
-            width="100%"
-            height="100%"
+            src={'/auth/discord-logo.png'}
+            width={20}
+            height={20}
             resizeMode="contain"
             alt="Discord Logo"
           />
@@ -99,14 +100,14 @@ export const SignUpSignInComponent = ({
         autoCapitalize="none"
         placeholder="Email"
         onChangeText={(text) => {
-          setEmailAddress(text)
+          setEmail(text);
         }}
       />
       <Input
         autoCapitalize="none"
         placeholder="Password"
         onChangeText={(text) => {
-          setPassword(text)
+          setPassword(text);
         }}
         textContentType="password"
         secureTextEntry
@@ -116,7 +117,7 @@ export const SignUpSignInComponent = ({
       <Button
         themeInverse
         onPress={() => {
-          handleEmailWithPress(emailAddress, password)
+          handleEmailWithPress(email, password);
         }}
         hoverStyle={{ opacity: 0.8 }}
         onHoverIn={() => {}}
@@ -164,5 +165,5 @@ export const SignUpSignInComponent = ({
         </XStack>
       )}
     </YStack>
-  )
-}
+  );
+};

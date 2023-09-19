@@ -4,77 +4,53 @@ import '@tamagui/core/reset.css';
 import '@tamagui/font-inter/css/400.css';
 import '@tamagui/font-inter/css/700.css';
 
-import React, { useMemo, useState } from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-
-import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import { SolitoImageProvider } from 'solito/image';
+import type { SolitoAppProps } from 'solito';
 
-import { type Session, createPagesBrowserClient } from '@supabase/auth-helpers-nextjs';
-import { SessionContextProvider } from '@supabase/auth-helpers-react';
-import { NextThemeProvider, useRootTheme } from '@tamagui/next-theme';
+import type { Session } from '@supabase/supabase-js';
 
-import { Provider, initialWindowMetrics } from 'app/provider';
+import { Provider } from 'app/provider';
 import { trpc } from 'app/utils/trpc/index.web';
+
+if (typeof requestAnimationFrame === 'undefined') {
+  globalThis['requestAnimationFrame'] = setImmediate;
+}
 
 if (process.env.NODE_ENV === 'production') {
   require('../public/tamagui.css');
 }
 
-const imageURL = process.env.NEXT_PUBLIC_APP_URL as `https:${string}`;
+const title = `${process.env.NEXT_PUBLIC_METADATA_NAME}`;
+const description = `${process.env.NEXT_PUBLIC_METADATA_DESCRIPTION}`;
+const url = `${process.env.NEXT_PUBLIC_METADATA_URL}`;
 
-function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useRootTheme();
-
-  return (
-    <NextThemeProvider
-      onChangeTheme={(next) => {
-        setTheme(next as any);
-      }}
-    >
-      <Provider defaultTheme={theme}>
-        <SolitoImageProvider
-          loader={({ quality, width, src }) => {
-            return `${imageURL}${src}?w=${width}&q=${quality}`;
-          }}
-        >
-          <SafeAreaProvider initialMetrics={initialWindowMetrics}>{children}</SafeAreaProvider>
-        </SolitoImageProvider>
-      </Provider>
-    </NextThemeProvider>
-  );
-}
-
-function ArcanaApp({ Component, pageProps }: AppProps<{ initialSession: Session | null }>) {
-  const [supabaseClient] = useState(() => createPagesBrowserClient());
-
-  const contents = useMemo(() => <Component {...pageProps} />, [Component, pageProps]);
-
+const T4App = ({ Component, pageProps }: SolitoAppProps<{ initialSession: Session | null }>) => {
   return (
     <>
-      <Head>
-        <title>Arcana</title>
-        <meta name="description" content="Arcana, an AI powered tarot card reader for humans." />
-        <link rel="icon" href="/favicon.ico" />
-        <style>{`
+      <Metadata />
+      <Provider initialSession={pageProps.initialSession}>
+        <Component {...pageProps} />
+      </Provider>
+    </>
+  );
+};
+
+export default trpc.withTRPC(T4App);
+
+const Metadata = () => (
+  <Head>
+    <title>{title ?? 'Arcana'}</title>
+    <meta name="description" content={description} />
+    <meta property="og:url" content={url} />
+
+    <link rel="icon" href="/favicon.ico" />
+    <style>
+      {`
           body, #root, #__next {
             min-width: 100% !important;
           }
-        `}</style>
-      </Head>
-
-      <ThemeProvider>
-        <SessionContextProvider
-          supabaseClient={supabaseClient}
-          initialSession={pageProps.initialSession}
-        >
-          {contents}
-        </SessionContextProvider>
-      </ThemeProvider>
-    </>
-  );
-}
-
-export default trpc.withTRPC(ArcanaApp);
+      `}
+    </style>
+  </Head>
+);
