@@ -3,9 +3,9 @@ import { Metrics, SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { CustomToast, TamaguiProvider, TamaguiProviderProps, ToastProvider } from '@arcana/ui';
 
+import config from '../tamagui.config';
 import { ToastViewport } from './toast/ToastViewport';
 import { TRPCProvider } from './trpc';
-import config from '../tamagui.config';
 
 export const initialWindowMetrics: Metrics | null = {
   frame: { x: 0, y: 0, width: 0, height: 0 },
