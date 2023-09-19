@@ -49,13 +49,13 @@ export const ChatScreen = () => {
   const ai = trpc.ai.generateText.useMutation({
     onSuccess: (data) => {
       console.log({ data });
-      // setMessages([
-      //   ...messages,
-      //   {
-      //     content: data.generatedText,
-      //     author: 'AI',
-      //   },
-      // ]);
+      setMessages([
+        ...messages,
+        {
+          content: data,
+          author: 'AI',
+        },
+      ]);
     },
 
     onError: (error) => {
