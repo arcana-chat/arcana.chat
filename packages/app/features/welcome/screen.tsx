@@ -4,7 +4,7 @@ import { AuthError, User } from '@supabase/supabase-js';
 
 import { H1, Stack } from '@arcana/ui';
 
-import { useUser } from 'app/utils/supabase';
+import { useCurrentUser } from 'app/utils/supabase/hooks/useCurrentUser';
 import { trpc } from 'app/utils/trpc';
 
 // const details = getUser()
@@ -26,7 +26,7 @@ import { trpc } from 'app/utils/trpc';
 // };
 
 export const WelcomeScreen = () => {
-  const { user } = useUser();
+  const { user } = useCurrentUser();
 
   console.log({ user });
   // const { data: user } = trpc.auth.getUser.useQuery();

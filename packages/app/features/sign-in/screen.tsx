@@ -3,7 +3,7 @@ import { useRouter } from 'solito/navigation';
 import { Provider, SignInWithOAuthCredentials } from '@supabase/supabase-js';
 
 import { YStack } from '@arcana/ui';
-import { SignUpSignInComponent } from '@arcana/ui/src/SignUpSignIn';
+import { SignUpSignInComponent } from 'app/components/SignUpSignIn';
 
 import { signIn } from 'app/utils/supabase';
 import { signInWithOAuth } from 'app/utils/supabase/auth';

@@ -4,6 +4,9 @@ const { resolve, join } = require('path');
 const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
+  register: true,
+  sw: 'service-worker.js',
+  swcMinify: true,
 });
 const { withTamagui } = require('@tamagui/next-plugin');
 
